@@ -1,5 +1,5 @@
 ---
-name: 'User Stories : <TITLE>'
+name: 'USER STORY : <TITLE>'
 about: 'Default user stories template '
 title: ''
 labels: ''
