@@ -15,4 +15,3 @@ As a **role** I can **capacity** so that **received benefit**
 
 
 **Task**
--[ ]
