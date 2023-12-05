@@ -19,13 +19,15 @@ class Table(models.Model):
 
 class CustomUser(AbstractUser):
     full_name = models.CharField(max_length=25)
-    email = models.EmailField(unique=True,blank=True, null=True)
-    membership_id = models.CharField(max_length=10, unique=True)
+    email = models.EmailField(blank=True, null=True,default=None)
+    membership_id = models.CharField(max_length=10, unique=True, null=True, blank=True)
     membership_start_date = models.DateField(null=True, blank=True)
     membership_end_date = models.DateField(null=True, blank=True)
 
 
 class TimeSlots(models.Model):
+    class Meta:
+        verbose_name_plural = "Time slots"
     DAY_CHOICES = [
         ('Monday', 'Monday'),
         ('Tuesday', 'Tuesday'),
@@ -79,6 +81,8 @@ class TimeSlots(models.Model):
 
 
 class Bookings(models.Model):
+    class Meta:
+        verbose_name_plural = "Bookings"
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE,related_name='bookings')
     booking_time = models.TimeField()
     booking_date = models.DateField()
