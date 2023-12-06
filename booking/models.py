@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
+import secrets
+import string
+
+
 
 """
 Model for table number and if game size is singles or doubles
@@ -23,6 +27,22 @@ class CustomUser(AbstractUser):
     membership_id = models.CharField(max_length=10, unique=True, null=True, blank=True)
     membership_start_date = models.DateField(null=True, blank=True)
     membership_end_date = models.DateField(null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        #Check if membership_id is not provided
+        if not self.membership_id:
+            unique_membership_id = False
+            #Generate a unique membership_id using secrets module
+            while not unique_membership_id:
+                new_membership_id = ''.join(secrets.choice(string.ascii_uppercase + string.digits) for _ in range(10))
+                #Check if membership_id is unique
+                if not CustomUser.objects.filter(membership_id=new_membership_id).exists():
+                    self.membership_id = new_membership_id
+                    unique_membership_id = True
+                    #Calls the save method of the parent class of AbstractUser to save the instance
+
+        super().save(*args, **kwargs)
+
 
 
 class TimeSlots(models.Model):

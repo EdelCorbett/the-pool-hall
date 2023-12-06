@@ -1,8 +1,9 @@
 from django.views import View
 from django.views.generic import TemplateView
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import BookingForm
+from django.views.generic.edit import FormView
+from .forms import BookingForm, MemberForm
 from .models import Table, Bookings, TimeSlots
 from crispy_forms.helper import FormHelper
 
@@ -10,6 +11,22 @@ from crispy_forms.helper import FormHelper
 # Create your views here.
 class IndexView(TemplateView):
     template_name = 'index.html'
+
+
+class MemberRegisterView(FormView):
+    template_name = 'accounts_signup.html'
+    form_class = MemberForm
+
+    def form_valid(self, form):
+        user = form.save(commit=False)
+        user.is_membership_approved = True
+        user.save()
+        return redirect('index')
+    
+    def form_invalid(self, form):
+        print(form.errors)
+        return super().form_invalid(form)
+
 
 class bookingView(TemplateView):
     template_name = 'booking.html'

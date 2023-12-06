@@ -11,17 +11,17 @@ class BookingsAdmin(admin.ModelAdmin):
     
 
 class CustomUserAdmin(admin.ModelAdmin):
-    list_display = ('email', 'first_name', 'last_name', 'is_staff', 'membership_id')
+    list_display = ('email', 'full_name', 'username','is_staff', 'membership_id')
     list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups', 'membership_id')
     search_fields = ('email', 'first_name', 'last_name')
     ordering = ('email',)
 
-    def get_queryset(self, request):
-        qs = super().get_queryset(request)
-        return qs.filter(membership_id=1)
+    # def get_queryset(self, request):
+    #     qs = super().get_queryset(request)
+    #     return qs.filter(membership_id=1)
 
     def has_add_permission(self, request):
-        return False
+        return True 
     
 
 admin.site.register(CustomUser, CustomUserAdmin)
