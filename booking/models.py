@@ -1,3 +1,4 @@
+from datetime import timedelta, datetime, time, timezone
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
@@ -9,16 +10,7 @@ import string
 """
 Model for table number and if game size is singles or doubles
 """
-class Table(models.Model):
-    size_choices = (
-        ('1', '1, singles'),
-        ('2', '2, doubles'),
-        )
-    table_number = models.IntegerField(unique=True)
-    table_size = models.CharField(choices = size_choices, default='1', max_length=2)
 
-    def __str__(self):
-        return f"Table {self.table_number}"
 
 
 class CustomUser(AbstractUser):
@@ -42,6 +34,34 @@ class CustomUser(AbstractUser):
                     #Calls the save method of the parent class of AbstractUser to save the instance
 
         super().save(*args, **kwargs)
+
+class Table(models.Model):
+    size_choices = (
+        ('1', '1, singles'),
+        ('2', '2, doubles'),
+    )
+    table_number = models.IntegerField(unique=True)
+    table_size = models.CharField(choices=size_choices, default='1', max_length=2)
+    booking_time = models.TimeField(null=True, blank=True)
+    booked_start_time = models.DateTimeField(null=True, blank=True)
+    booked_end_time = models.DateTimeField(null=True, blank=True)
+    booking_date = models.DateField(null=True, blank=True)
+
+    def is_table_available(self, booking_datetime, booking_size):
+        booking_start_time = datetime.combine(booking_datetime.date(), self.booking_time)
+        booking_end_time = booking_start_time + timedelta(hours=1)
+
+        if (
+            (self.booked_start_time is None or self.booked_start_time < booking_start_time)
+            and (self.booked_end_time is None or self.booked_end_time < booking_start_time)
+            and self.table_size == booking_size
+        ):
+            return True
+
+        return False
+
+    def __str__(self):
+        return f"Table {self.table_number}"
 
 
 
@@ -109,3 +129,4 @@ class Bookings(models.Model):
     is_cancelled = models.BooleanField(default=False)
     is_edited = models.BooleanField(default=False)
     table = models.ForeignKey(Table, on_delete=models.SET_NULL, null=True,blank=True)
+
