@@ -1,17 +1,15 @@
 {% extends 'base.html' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Booking{% endblock %}
 
 {% block content %}
-{% load crispy_forms_tags %}
-<h1>BOOKINGS</h1>
 <div class="container">
     <h2>Make a Booking</h2>
     <form method="post" action="{% url 'booking' %}">
         {% csrf_token %}
         {{ form.non_field_errors }}
         <div class="form-group">
-            <label for="{{ form.user.id_for_label }}">Name</label>
+            <label for="{{ form.user.id_for_label }}">Username</label>
             {{ form.user }}
             {{ form.user.errors }}
             <div class="form-group">

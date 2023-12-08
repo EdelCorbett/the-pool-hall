@@ -1,3 +1,4 @@
+from datetime import timedelta, datetime, time
 from django.views import View
 from django.views.generic import TemplateView
 from django.shortcuts import render, redirect
@@ -6,6 +7,7 @@ from django.views.generic.edit import FormView
 from .forms import BookingForm, MemberForm
 from .models import Table, Bookings, TimeSlots
 from crispy_forms.helper import FormHelper
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
@@ -28,33 +30,63 @@ class MemberRegisterView(FormView):
         return super().form_invalid(form)
 
 
-class bookingView(TemplateView):
+class BookingView(LoginRequiredMixin, FormView):
     template_name = 'booking.html'
     form_class = BookingForm
 
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(initial={'user': request.user})
+        return render(request, self.template_name, {'form': form})
+
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
+    
         if form.is_valid():
-            bookking_date = form.cleaned_data['booking_date']
+            booking_date = form.cleaned_data['booking_date']
             booking_time = form.cleaned_data['booking_time']
+            print(booking_date)
+
             table_available = False
-            for table in Table.objects.all():
-                if is_table_available(table,booking_date,booking_time):
+
+            for table in Table.objects.filter():
+                if self.is_table_available(table, booking_date, booking_time):
                     booking = form.save(commit=False)
                     booking.table = table
+                    booking.user = request.user
                     booking.save()
+
+                    booking_datetime = datetime.combine(booking_date, booking_time)
+
+                    table.booked_start_time = booking_datetime
+                    table.booked_end_time = table.booked_start_time + timedelta(hours=1)
+                    table.is_available = False  # Mark the table as not available during the booked time
+                    table.save()
+
                     table_available = True
                     break
+
             if table_available:
                 return HttpResponse("Booking successful")
             else:
                 return HttpResponse("No tables available")
+        else:
+            return render(request, self.template_name, {'form': form})
+        
+    def is_table_available(self, table, booking_date, booking_time):
+        booking_datetime = datetime.combine(booking_date, booking_time)
+        bookings = Bookings.objects.filter(
+            booking_date=booking_date, booking_time=booking_time, table=table)
+        return bookings.count() == 0
+
+
+                    
+                        
+
+            
+            
+        
+
+
+                        
                 
-
-        return render(request, self.template_name, {'form': form})
-    
-
-
-
-
-    
+                
