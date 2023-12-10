@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Bookings{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Your Bookings</h2>
+    <ul>
+        {% for booking in bookings %}
+        <li>
+            Date: {{ booking.booking_date }}, Time: {{ booking.booking_time }}
+            <a href="{% url 'edit_booking' booking.id %}">Edit</a>
+            <a href="{% url 'cancel_booking' booking.id %}">Cancel</a>
+        </li>
+        {% empty %}
+        <p>You have no bookings.</p>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

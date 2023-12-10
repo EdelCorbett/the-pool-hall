@@ -44,7 +44,7 @@ class TimeSlotForm(forms.Form):
 class BookingForm(forms.ModelForm):
     class Meta:
         model = Bookings
-        fields = ['user', 'booking_date','booking_time','table']
+        fields = ['user', 'booking_date','booking_time',]
         widgets = {
             'user': forms.HiddenInput(),
             'booking_date': forms.DateInput(attrs={'type': 'date'}),
