@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Cancel Booking{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Cancel Booking</h2>
+
+    {% if success_message %}
+    <div class="alert alert-success" role="alert">
+        {{ success_message }}
+    </div>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        {% if warning_message %}
+        <div class="alert alert-warning" role="alert">
+            {{ warning_message }}
+        </div>
+        {% endif %}
+
+        <p>You are about to cancel the booking with the following details:</p>
+        <p><strong>Booking Date:</strong> {{ booking.booking_date }}</p>
+        <p><strong>Booking Time:</strong> {{ booking.booking_time }}</p>
+        <p><strong>Table:</strong> {{ booking.table }}</p>
+
+        <p>Are you sure you want to cancel this booking?</p>
+
+        <button type="submit" class="btn btn-danger">Cancel Booking</button>
+    </form>
+</div>
+{% endblock %}

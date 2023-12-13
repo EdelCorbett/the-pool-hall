@@ -9,6 +9,7 @@ from .forms import BookingForm, MemberForm
 from .models import Table, Bookings, TimeSlots
 from crispy_forms.helper import FormHelper
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 
 
 # Create your views here.
@@ -25,7 +26,7 @@ class MemberRegisterView(FormView):
         user.is_membership_approved = True
         user.save()
         return redirect('index')
- #If form is invalid,print the errors    
+#If form is invalid,print the errors    
     def form_invalid(self, form):
         print(form.errors)
         return super().form_invalid(form)
@@ -104,17 +105,19 @@ class EditBookingView(LoginRequiredMixin,View):
         
         if form.is_valid():
             form.save()
-            return redirect('index') 
+            return redirect('view_booking') 
         
         return render(request, self.template_name, {'form': form, 'booking': booking})
     
 # Cancel booking view
 class CancelBookingView(LoginRequiredMixin,View):
     template_name = 'cancel_booking.html'
+    
 
     def get(self, request, booking_id):
         booking = get_object_or_404(Bookings, pk=booking_id)
-        return render(request, self.template_name, {'booking': booking})
+        warning_message = "Please note that canceling a booking is irreversible."
+        return render(request, self.template_name, {'booking': booking, 'warning_message': warning_message})
 
     def post(self, request, booking_id):
         booking = get_object_or_404(Bookings, pk=booking_id)
@@ -125,7 +128,11 @@ class CancelBookingView(LoginRequiredMixin,View):
         table.is_available = True  # Mark the table as available
         table.save()
 
-        return redirect('index')
+        success_message = "Your booking was successfully canceled."
+        messages.success(request, success_message)
+
+
+        return redirect('view_booking')
                     
                         
 

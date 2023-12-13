@@ -1,4 +1,3 @@
-
 from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit
@@ -11,31 +10,37 @@ from .models import CustomUser, Table, Bookings, TimeSlots
 
 class MemberForm(UserCreationForm):
     email = forms.EmailField(required=False)
-    membership_id = forms.CharField(max_length=10, required=True)
+    membership_id = forms.CharField(max_length=10, required=False)
 
     class Meta:
         model = CustomUser
         fields = ("username","email", "password1", "password2", "membership_id")
-        def save(self, commit=True):
-            user = super(MemberForm, self).save(commit=False)
-            user.email = self.cleaned_data['email']
-            user.membership_id = self.cleaned_data['membership_id']
 
-            if not user.membership_id:
-                while True:
-                    new_membership_id = ''.join(secrets.choice(
-                        string.ascii_uppercase + string.digits) 
-                        for _ in range(10))
-                    if not CustomUser.objects.filter(
-                        membership_id=new_membership_id).exists():
-                        user.membership_id = new_membership_id
-                        break
+    def clean(self):
+        cleaned_data = super().clean()
+        membership_id = cleaned_data.get('membership_id')
 
-            if commit:
-                user.save()
+        if not membership_id or membership_id.strip() == '':
+            while True:
+                new_membership_id = ''.join(secrets.choice(
+                    string.ascii_uppercase + string.digits) 
+                    for _ in range(10))
+                if not CustomUser.objects.filter(
+                    membership_id=new_membership_id).exists():
+                    cleaned_data['membership_id'] = new_membership_id
+                    break
 
-            return user
-    
+        return cleaned_data
+
+    def try_save(self, commit=True):
+        user = super(MemberForm, self).save(commit=False)
+        user.email = self.cleaned_data['email']
+        user.membership_id = self.cleaned_data.get('membership_id')
+
+        if commit:
+            user.save()
+
+        return user
 class TimeSlotForm(forms.Form):
     timeslots = forms.ChoiceField(choices=[(f'{hour:02}:{minute:02}', f'{hour:02}:{minute:02}') for hour in range(15, 22) for minute in range(0, 60, 15)])
 
