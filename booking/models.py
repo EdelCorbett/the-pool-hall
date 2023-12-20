@@ -7,13 +7,10 @@ import string
 
 
 
-"""
-Model for table number and if game size is singles or doubles
-"""
-
-
-
 class CustomUser(AbstractUser):
+    """Custom user model that extends the AbstractUser model
+    Adds fields to model
+    """
     full_name = models.CharField(max_length=25)
     email = models.EmailField(blank=True, null=True,default=None)
     membership_id = models.CharField(max_length=10, unique=True, null=True, blank=True)
@@ -25,15 +22,21 @@ class CustomUser(AbstractUser):
         #Check if membership_id is not provided
         if not self.membership_id:
             unique_membership_id = False
-            #Generate a unique membership_id using secrets module
+            """
+            Generate a unique membership_id using secrets module if membership_id is not provided
+            checks if the generated membership_id already exists in the database
+            if it does, it generates another one
+            if it doesn't, it assigns the generated membership_id to the user
+            and saves the user
+            """
             while not unique_membership_id:
                 new_membership_id = ''.join(secrets.choice(string.ascii_uppercase + string.digits) for _ in range(10))
-                #Check if membership_id is unique
+                
                 if not CustomUser.objects.filter(membership_id=new_membership_id).exists():
                     self.membership_id = new_membership_id
                     unique_membership_id = True
-                    #Calls the save method of the parent class of AbstractUser to save the instance
-
+                
+                
         super().save(*args, **kwargs)
 
 class Table(models.Model):

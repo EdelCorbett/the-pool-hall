@@ -1,13 +1,12 @@
 from django.contrib import admin
 from .models import CustomUser, Table, Bookings, TimeSlots
-# Register your models here.
+
+
 class BookingsAdmin(admin.ModelAdmin):
     list_display = ('id','booking_date', 'booking_time', 'table' , 'user',"is_cancelled")
     list_filter = ('booking_date', 'booking_time', 'table' , 'user',"is_cancelled")
 
     
-    
-
 class CustomUserAdmin(admin.ModelAdmin):
     list_display = ('email', 'full_name', 'username','is_staff', 'membership_id','is_membership_approved')
     list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups', 'membership_id','is_membership_approved')
