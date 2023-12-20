@@ -22,6 +22,10 @@ body {
     color: black;
 }
 
+.footer .list-inline-item {
+    color: black;
+}
+
 .approval-message {
 
     display: flex;
