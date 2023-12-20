@@ -9,10 +9,15 @@ class BookingsAdmin(admin.ModelAdmin):
     
 
 class CustomUserAdmin(admin.ModelAdmin):
-    list_display = ('email', 'full_name', 'username','is_staff', 'membership_id')
-    list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups', 'membership_id')
+    list_display = ('email', 'full_name', 'username','is_staff', 'membership_id','is_membership_approved')
+    list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups', 'membership_id','is_membership_approved')
     search_fields = ('email', 'first_name', 'last_name')
     ordering = ('email',)
+    actions = ['approve_memberships']
+
+    def approve_memberships(self, request, queryset):
+        queryset.update(is_membership_approved=True)
+    approve_memberships.short_description = "Approve selected memberships"
 
 
     def has_add_permission(self, request):

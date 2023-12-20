@@ -17,6 +17,7 @@ class CustomUser(AbstractUser):
     full_name = models.CharField(max_length=25)
     email = models.EmailField(blank=True, null=True,default=None)
     membership_id = models.CharField(max_length=10, unique=True, null=True, blank=True)
+    is_membership_approved = models.BooleanField(default=False)
     membership_start_date = models.DateField(null=True, blank=True)
     membership_end_date = models.DateField(null=True, blank=True)
 
