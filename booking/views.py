@@ -20,12 +20,12 @@ class IndexView(TemplateView):
 class MemberRegisterView(FormView):
     template_name = 'accounts_signup.html'
     form_class = MemberForm
-# IF form is valid,membership is approved,save the user and redirect to index page
+# IF form is valid,membership is approved,save the user
     def form_valid(self, form):
         user = form.save(commit=False)
         user.is_membership_approved = True
         user.save()
-        return redirect('index')
+        return super().form_valid(form)
 #If form is invalid,print the errors    
     def form_invalid(self, form):
         print(form.errors)
@@ -37,16 +37,21 @@ class BookingView(LoginRequiredMixin, FormView):
     form_class = BookingForm
 
     def get(self, request, *args, **kwargs):
-        form = self.form_class(initial={'user': request.user})
+        form = self.form_class()
         return render(request, self.template_name, {'form': form})
 
     def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
+        form_data = request.POST.copy()  
+        form_data['user'] = request.user.id  
+        form = self.form_class(form_data)
     
         if form.is_valid():
             booking_date = form.cleaned_data['booking_date']
             booking_time = form.cleaned_data['booking_time']
             print(booking_date)
+
+            booking_date_str = booking_date.strftime('%d-%m-%y')
+            booking_time_str = booking_time.strftime('%H:%M')
 
             table_available = False
 
@@ -69,24 +74,25 @@ class BookingView(LoginRequiredMixin, FormView):
                     break
 
             if table_available:
-                return HttpResponse("Booking successful")
+                messages.success(request, f"Booking successful for {booking_date_str} at {booking_time_str}")
+                return redirect('view_booking')
+            
             else:
                 return HttpResponse("No tables available")
         else:
             return render(request, self.template_name, {'form': form})
         
     def is_table_available(self, table, booking_date, booking_time):
-        booking_datetime = datetime.combine(booking_date, booking_time)
         bookings = Bookings.objects.filter(
-            booking_date=booking_date, booking_time=booking_time, table=table)
-        return bookings.count() == 0
+        booking_date=booking_date, booking_time=booking_time, table=table, is_cancelled=False)
+        return bookings.count() == 0 
     
 class ViewBookingsView(LoginRequiredMixin,View):
     template_name = 'view_booking.html'
 
     def get(self, request):
-        user_bookings = Bookings.objects.filter(user=request.user)
-        return render(request, self.template_name, {'bookings': user_bookings})
+        bookings = Bookings.objects.filter(user=request.user).order_by('-booking_date')
+        return render(request, self.template_name, {'bookings': bookings})
     
 
 # Edit booking view
@@ -120,19 +126,15 @@ class CancelBookingView(LoginRequiredMixin,View):
         return render(request, self.template_name, {'booking': booking, 'warning_message': warning_message})
 
     def post(self, request, booking_id):
-        booking = get_object_or_404(Bookings, pk=booking_id)
+        booking = get_object_or_404(Bookings, id=booking_id)
+        table = booking.table
+        if table is not None:
+            table.is_available = True
+            table.save()
         booking.is_cancelled = True
         booking.save()
-
-        table = booking.table
-        table.is_available = True  # Mark the table as available
-        table.save()
-
-        success_message = "Your booking was successfully canceled."
-        messages.success(request, success_message)
-
-
-        return redirect('view_booking')
+        messages.success(request, "Booking cancelled successfully.")
+        return redirect('view_booking') 
                     
                         
 

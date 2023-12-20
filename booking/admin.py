@@ -2,12 +2,10 @@ from django.contrib import admin
 from .models import CustomUser, Table, Bookings, TimeSlots
 # Register your models here.
 class BookingsAdmin(admin.ModelAdmin):
-    list_display = ('booking_date', 'booking_time', 'table' , 'user',"is_cancelled")
+    list_display = ('id','booking_date', 'booking_time', 'table' , 'user',"is_cancelled")
     list_filter = ('booking_date', 'booking_time', 'table' , 'user',"is_cancelled")
 
-    def get_queryset(self, request):
-        qs = super().get_queryset(request)
-        return qs.filter(is_cancelled=False)
+    
     
 
 class CustomUserAdmin(admin.ModelAdmin):

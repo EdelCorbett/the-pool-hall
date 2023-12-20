@@ -1,0 +1,25 @@
+body {
+    background: url('../images/pooltable.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.card {
+    background-color: rgba(137, 135, 135, 0.3);
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 30px;
+    border-radius: 30px;
+    color: black;
+}
+
+.list-group-item {
+    background-color: rgba(249, 246, 246, 0.3);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 30px;
+    border-radius: 30px;
+    color: black;
+}

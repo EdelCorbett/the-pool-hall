@@ -1,6 +1,6 @@
+from datetime import datetime
 from django import forms
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit
+from crispy_forms.layout import  Submit
 from crispy_forms.bootstrap import FormActions
 from django.contrib.auth.forms import UserCreationForm
 import secrets
@@ -40,7 +40,9 @@ class MemberForm(UserCreationForm):
         if commit:
             user.save()
 
-        return user
+        resp = None 
+        return user, resp
+            
 class TimeSlotForm(forms.Form):
     timeslots = forms.ChoiceField(choices=[(f'{hour:02}:{minute:02}', f'{hour:02}:{minute:02}') for hour in range(15, 22) for minute in range(0, 60, 15)])
 
@@ -51,7 +53,7 @@ class BookingForm(forms.ModelForm):
         model = Bookings
         fields = ['user', 'booking_date','booking_time',]
         widgets = {
-            'user': forms.HiddenInput(),
+            'user': forms.TextInput(attrs={'readonly': 'readonly'}), 
             'booking_date': forms.DateInput(attrs={'type': 'date'}),
             'booking_time': forms.TimeInput(attrs={'type': 'time','format': '%H:%M'}),
             'table': forms.Select(attrs={'class': 'form-control'}),
@@ -63,16 +65,18 @@ class BookingForm(forms.ModelForm):
         super(BookingForm, self).__init__(*args, **kwargs)
         self.fields['user'].initial = user
 
-        self.helper = FormHelper()
-        self.helper.layout = Layout(
-            'user',
-            'booking_date',
-            'booking_time',
-            'table',
+        
 
-            FormActions(
+        # self.helper = FormHelper()
+        # self.helper.layout = Layout(
+        #     'user',
+        #     'booking_date',
+        #     'booking_time',
+        #     'table',
+
+        FormActions(
                 Submit('submit', 'Submit', css_class='btn btn-primary')
             )
-        )
+        # )
 
     
