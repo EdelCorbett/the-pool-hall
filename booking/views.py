@@ -57,7 +57,7 @@ class BookingView(LoginRequiredMixin, FormView):
         if not request.user.is_membership_approved:
             messages.error(request, 'Your membership is not approved yet.')
             return redirect('index') 
-         
+
         """
         creates a copy of the POST data and adds the user id to it
         creates a new form instance with the new data
@@ -118,10 +118,19 @@ class BookingView(LoginRequiredMixin, FormView):
         
         
     def is_table_available(self, table, booking_date, booking_time):
-        bookings = Bookings.objects.filter(
-        booking_date=booking_date, booking_time=booking_time, table=table, is_cancelled=False)
-        return bookings.count() == 0 
+        booking_start_time = datetime.combine(booking_date, booking_time)
+        booking_end_time = booking_start_time + timedelta(hours=1)
 
+        overlapping_bookings = Bookings.objects.filter(
+            table=table,
+            is_cancelled=False,
+            booking_date=booking_date,
+            booking_time__lt=booking_end_time.time(),
+        ).exclude(
+            booking_time__lt=booking_start_time.time(),
+        )
+
+        return overlapping_bookings.count() == 0
     
 
 class ViewBookingsView(LoginRequiredMixin,View):
