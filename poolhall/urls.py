@@ -21,3 +21,6 @@ urlpatterns = [
     path('', include('booking.urls')),
     path('accounts/', include('allauth.urls')),
 ]
+
+handler404 = 'poolhall.views.handler404'
+handler500 = 'poolhall.views.handler500'

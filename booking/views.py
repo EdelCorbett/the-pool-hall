@@ -116,18 +116,12 @@ class BookingView(LoginRequiredMixin, FormView):
         else:
             return render(request, self.template_name, {'form': form})
         
-    def is_table_available(self, table, booking_start_time, booking_end_time):
-        bookings = Bookings.objects.filter(table=table, is_cancelled=False)
+        
+    def is_table_available(self, table, booking_date, booking_time):
+        bookings = Bookings.objects.filter(
+        booking_date=booking_date, booking_time=booking_time, table=table, is_cancelled=False)
+        return bookings.count() == 0 
 
-        # Check if any of the bookings overlap with the desired booking time
-        for booking in bookings:
-            if (booking_start_time < booking.booking_end_time and
-            booking_end_time > booking.booking_start_time):
-        # There is an overlapping booking, so the table is not available
-                return False
-
-        # No overlapping bookings were found, so the table is available
-        return True
     
 
 class ViewBookingsView(LoginRequiredMixin,View):
