@@ -1,5 +1,6 @@
-from datetime import datetime
+from datetime import datetime, timedelta, date, time
 from django import forms
+from django.core.exceptions import ValidationError
 from crispy_forms.layout import  Submit
 from crispy_forms.bootstrap import FormActions
 from django.contrib.auth.forms import UserCreationForm
@@ -60,19 +61,24 @@ class BookingForm(forms.ModelForm):
             
         
         }
+
+    def clean_booking_date(self):
+        booking_date = self.cleaned_data.get('booking_date')
+
+        if booking_date < date.today():
+            raise ValidationError("The date cannot be in the past!")
+
+        return booking_date
+    
+    
+
+    
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user', None)
         super(BookingForm, self).__init__(*args, **kwargs)
         self.fields['user'].initial = user
 
         
-
-        # self.helper = FormHelper()
-        # self.helper.layout = Layout(
-        #     'user',
-        #     'booking_date',
-        #     'booking_time',
-        #     'table',
 
         FormActions(
                 Submit('submit', 'Submit', css_class='btn btn-primary')
