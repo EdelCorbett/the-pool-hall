@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-
 import os
 import dj_database_url
 if os.path.isfile('env.py'):
@@ -157,3 +156,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 ACCOUNT_FORMS = {'signup': 'booking.forms.MemberForm'}
+
+handler404 = 'poolhall.views.handler404'
+handler500 = 'poolhall.views.handler500'

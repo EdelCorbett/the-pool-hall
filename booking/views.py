@@ -120,7 +120,10 @@ class BookingView(LoginRequiredMixin, FormView):
     def is_table_available(self, table, booking_date, booking_time):
         booking_start_time = datetime.combine(booking_date, booking_time)
         booking_end_time = booking_start_time + timedelta(hours=1)
-
+        """
+        The filter method checks for bookings that start before booking_end_time and are not cancelled
+        The lt(less than) lookup excludes bookings that start after booking_end_time
+        The booking_time__lt=booking_start_time.time() excludes bookings that start after booking_start_time"""
         overlapping_bookings = Bookings.objects.filter(
             table=table,
             is_cancelled=False,
@@ -154,15 +157,9 @@ class EditBookingView(LoginRequiredMixin,View):
     create a form instance with the booking data 
     updates the booking with the new data
     if the form is valid, it redirects to the view_booking
-
-
-
-
-
     """
     template_name = 'edit_booking.html'
 
-   
     def get(self, request, booking_id):
         booking = get_object_or_404(Bookings, pk=booking_id)
         form = BookingForm(instance=booking)
