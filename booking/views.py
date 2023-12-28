@@ -144,9 +144,11 @@ class ViewBookingsView(LoginRequiredMixin,View):
     template_name = 'view_booking.html'
 
     def get(self, request):
-        bookings = Bookings.objects.filter(user=request.user).order_by('-booking_date')
-        return render(request, self.template_name, {'bookings': bookings})
-    
+        cancelled_bookings = Bookings.objects.filter(user=request.user, is_cancelled=True).order_by('-booking_date')
+        upcoming_bookings = Bookings.objects.filter(user=request.user, is_cancelled=False, booking_date__gte=timezone.now()).order_by('booking_date')
+        past_bookings = Bookings.objects.filter(user=request.user, is_cancelled=False, booking_date__lt=timezone.now()).order_by('-booking_date')
+        return render(request, self.template_name, {'cancelled_bookings': cancelled_bookings, 'upcoming_bookings': upcoming_bookings, 'past_bookings': past_bookings})
+        
 
 # Edit booking view
 class EditBookingView(LoginRequiredMixin,View):
@@ -171,7 +173,10 @@ class EditBookingView(LoginRequiredMixin,View):
         
         if form.is_valid():
             form.save()
-            return redirect('view_booking') 
+            
+        messages.success(request, 'You have successfully edited your booking.')
+        return redirect('view_booking') 
+        
         
         return render(request, self.template_name, {'form': form, 'booking': booking})
     
@@ -190,8 +195,9 @@ class CancelBookingView(LoginRequiredMixin,View):
 
     def get(self, request, booking_id):
         booking = get_object_or_404(Bookings, pk=booking_id)
+        form = BookingForm(instance=booking)
         warning_message = "Please note that canceling a booking is irreversible."
-        return render(request, self.template_name, {'booking': booking, 'warning_message': warning_message})
+        return render(request, self.template_name, {'form': form, 'warning_message': warning_message})
 
     def post(self, request, booking_id):
         booking = get_object_or_404(Bookings, id=booking_id)

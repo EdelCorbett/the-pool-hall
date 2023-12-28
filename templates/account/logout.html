@@ -6,9 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header">
-                    <h3>{% trans "Sign Out" %}</h3>
-                </div>
+                <h3>{% trans "Sign Out" %}</h3>
                 <div class="card-body">
                     <p>{% trans 'Are you sure you want to sign out?' %}</p>
                     {% url 'account_logout' as action_url %}

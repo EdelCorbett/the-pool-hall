@@ -1,35 +1,40 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block title %}Cancel Booking{% endblock %}
-
+<!-- cancel_booking.html -->
 {% block content %}
-<div class="container">
-    <h2>Cancel Booking</h2>
-
-    {% if success_message %}
-    <div class="alert alert-success" role="alert">
-        {{ success_message }}
-    </div>
-    {% endif %}
-
-    <form method="post">
-        {% csrf_token %}
-        {{ form.non_field_errors }}
-
-        {% if warning_message %}
-        <div class="alert alert-warning" role="alert">
-            {{ warning_message }}
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow">
+        <div class="card-body">
+            <h1 class="text-center">Cancel Booking</h1>
+            <form method="post" class="mt-4">
+                {% csrf_token %}
+                <div class="alert alert-info" role="alert">
+                    You are about to cancel the booking with the following details:
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.user.id_for_label }}">Name</label>
+                    <input type="text" class="form-control" value="{{ request.user.username }}" readonly>
+                    <input type="hidden" id="{{ form.user.id_for_label }}" name="{{ form.user.html_name }}"
+                        value="{{ request.user.id }}">
+                    {{ form.user.errors }}
+                </div>
+                <div class="form-group mt-3">
+                    <label for="{{ form.booking_date.id_for_label }}">Booking Date</label>
+                    <input type="date" class="form-control" id="{{ form.booking_date.id_for_label }}"
+                        name="{{ form.booking_date.name }}" value="{{ form.booking_date.value|date:'Y-m-d' }}" required>
+                </div>
+                {{ form.booking_date.errors }}
+                <div class="form-group">
+                    <label><strong>Booking Time:</strong></label>
+                    <input type="text" class="form-control" value="{{ form.booking_time.value|time:'H:i' }}" required>
+                </div>
+                <div class="alert alert-info" role="alert">
+                    Are you sure you want to cancel this booking?
+                    <button type="submit" class="btn btn-danger">Cancel Booking</button>
+            </form>
         </div>
-        {% endif %}
-
-        <p>You are about to cancel the booking with the following details:</p>
-        <p><strong>Booking Date:</strong> {{ booking.booking_date }}</p>
-        <p><strong>Booking Time:</strong> {{ booking.booking_time }}</p>
-        <p><strong>Table:</strong> {{ booking.table }}</p>
-
-        <p>Are you sure you want to cancel this booking?</p>
-
-        <button type="submit" class="btn btn-danger">Cancel Booking</button>
-    </form>
+    </div>
 </div>
 {% endblock %}

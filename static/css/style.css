@@ -1,11 +1,18 @@
 body {
     background: url('../images/pooltable.jpg') no-repeat center center fixed;
     background-size: cover;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 
 }
 
+main {
+    flex: 1 0 auto;
+}
+
 .card {
-    background-color: rgba(137, 135, 135, 0.7);
+
     margin-top: 50px;
     margin-bottom: 50px;
     padding: 30px;
@@ -22,6 +29,10 @@ body {
     color: black;
 }
 
+.footer {
+    flex-shrink: 0;
+}
+
 .footer .list-inline-item {
     color: black;
 }
@@ -34,4 +45,18 @@ body {
 
     font-size: 2rem;
 
+}
+
+.custom-container {
+    background-color: rgba(4, 83, 59, 0.9);
+}
+
+.custom-nav-tabs .nav-item .custom-nav-link {
+    background-color: #00897b;
+    color: #ffffff;
+}
+
+.custom-nav-tabs .nav-item .custom-nav-link.active {
+    background-color: #00695c;
+    color: #ffffff;
 }

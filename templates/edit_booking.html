@@ -4,6 +4,21 @@
 {% block title %}Edit Booking{% endblock %}
 <!-- edit_booking.html -->
 {% block content %}
+<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                {% for message in messages %}
+                <p{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</p>
+                    {% endfor %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Continue</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="d-flex justify-content-center align-items-center vh-100">
     <div class="card shadow">
         <div class="card-body">
@@ -93,5 +108,11 @@
         </div>
     </div>
 </div>
-
+{% if messages %}
+<script>
+    $(document).ready(function () {
+        $('#messageModal').modal('show');
+    });
+</script>
+{% endif %}
 {% endblock %}
