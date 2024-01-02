@@ -7,17 +7,36 @@ body {
 
 }
 
+.navbar a:hover {
+    color: #00695c !important;
+}
+
+.navbar-toggler {
+    border-color: #00695c !important;
+}
+
+
+.navbar-toggler:hover {
+    color: #00695c !important;
+}
+
 main {
     flex: 1 0 auto;
 }
 
-.card {
+h1 {
+    color: #ffffff;
 
+
+}
+
+.card {
+    background-color: rgba(52, 58, 64, 0.7);
     margin-top: 50px;
     margin-bottom: 50px;
     padding: 30px;
     border-radius: 30px;
-    color: black;
+    color: white;
 }
 
 .list-group-item {
@@ -29,12 +48,14 @@ main {
     color: black;
 }
 
+
 .footer {
     flex-shrink: 0;
+
 }
 
 .footer .list-inline-item {
-    color: black;
+    color: white;
 }
 
 .approval-message {
@@ -59,4 +80,13 @@ main {
 .custom-nav-tabs .nav-item .custom-nav-link.active {
     background-color: #00695c;
     color: #ffffff;
+}
+
+.icon-white {
+    color: white;
+}
+
+
+.icon-white:hover {
+    color: #00695c;
 }

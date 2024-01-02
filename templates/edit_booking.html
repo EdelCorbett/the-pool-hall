@@ -38,7 +38,8 @@
                 <div class="form-group mt-3">
                     <label for="{{ form.booking_date.id_for_label }}">Booking Date</label>
                     <input type="date" class="form-control" id="{{ form.booking_date.id_for_label }}"
-                        name="{{ form.booking_date.name }}" value="{{ form.booking_date.value|date:'Y-m-d' }}" required>
+                        name="{{ form.booking_date.name }}" value="{{ form.booking_date.value|date:'Y-m-d' }}" required
+                        readonly>
                 </div>
                 {{ form.booking_date.errors }}
                 <div class="form-group">
@@ -48,7 +49,7 @@
                 <div class="alert alert-info" role="alert">
                     Please select a new date and time for your booking:
                 </div>
-                <form method="post" action="{% url 'booking' %}" class="mt-4">
+                <form method="post" action="{% url 'booking' %}" class="bg-dark text-white p-5">
                     {% csrf_token %}
                     {{ form.non_field_errors }}
 

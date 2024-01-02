@@ -55,7 +55,7 @@ class BookingView(LoginRequiredMixin, FormView):
 
     def post(self, request, *args, **kwargs):
         if not request.user.is_membership_approved:
-            messages.error(request, 'Your membership is not approved yet.')
+            messages.error(request, 'Your membership is not approved yet.Bookings can only be made by approved members.')
             return redirect('index') 
 
         """
@@ -95,6 +95,9 @@ class BookingView(LoginRequiredMixin, FormView):
                     booking_datetime = datetime.combine(booking_date, booking_time)
                     booking_datetime_aware = timezone.make_aware(booking_datetime)
 
+                    booking.booking_end_time = booking_datetime_aware + timedelta(hours=1)  
+                    booking.save() 
+
                     table.booked_start_time = booking_datetime_aware
                     table.booked_end_time = booking_datetime_aware + timedelta(hours=1)
                     table.is_available = False  
@@ -129,8 +132,7 @@ class BookingView(LoginRequiredMixin, FormView):
             is_cancelled=False,
             booking_date=booking_date,
             booking_time__lt=booking_end_time.time(),
-        ).exclude(
-            booking_time__lt=booking_start_time.time(),
+            booking_end_time__gt=booking_start_time.time()
         )
 
         return overlapping_bookings.count() == 0

@@ -31,67 +31,66 @@
                         role="tab">Upcoming</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="past-tab" data-toggle="tab" href="#past" role="tab">Past</a>
+                    <a class="nav-link custom-nav-link" id="past-tab" data-toggle="tab" href="#past" role="tab">Past</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="cancelled-tab" data-toggle="tab" href="#cancelled" role="tab">Cancelled</a>
+                    <a class="nav-link custom-nav-link" id="cancelled-tab" data-toggle="tab" href="#cancelled"
+                        role="tab">Cancelled</a>
                 </li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane fade show active" id="upcoming" role="tabpanel">
-                    <!-- Upcoming bookings go here -->
-                    {% for booking in upcoming_bookings %}
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="upcoming" role="tabpanel">
+                        <!-- Upcoming bookings go here -->
+                        {% for booking in upcoming_bookings %}
 
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Date: {{ booking.booking_date }}, Time: {{ booking.booking_time }}
-                            </h5>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Date: {{ booking.booking_date }}, Time:
+                                    {{ booking.booking_time }}
+                                </h5>
 
-                            <a href="{% url 'edit_booking' booking.id %}" class="btn btn-primary btn-sm mr-2">Edit</a>
-                            <a href="{% url 'cancel_booking' booking.id %}" class="btn btn-danger btn-sm">Cancel</a>
+                                <a href="{% url 'edit_booking' booking.id %}"
+                                    class="btn btn-primary btn-sm mr-2">Edit</a>
+                                <a href="{% url 'cancel_booking' booking.id %}" class="btn btn-danger btn-sm">Cancel</a>
+                            </div>
                         </div>
+                        {% empty %}
+                        <p class="text-center">You have no upcoming bookings.</p>
+                        {% endfor %}
                     </div>
-                    {% empty %}
-                    <p class="text-center">You have no upcoming bookings.</p>
-                    {% endfor %}
-                </div>
-                <div class="tab-pane fade" id="past" role="tabpanel">
-                    <!-- Past bookings go here -->
-                    {% for booking in past_bookings %}
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Date: {{ booking.booking_date }}, Time: {{ booking.booking_time }}
-                            </h5>
+                    <div class="tab-pane fade" id="past" role="tabpanel">
+                        <!-- Past bookings go here -->
+                        {% for booking in past_bookings %}
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Date: {{ booking.booking_date }}, Time:
+                                    {{ booking.booking_time }}
+                                </h5>
+                            </div>
                         </div>
+                        {% empty %}
+                        <p class="text-center">You have no past bookings.</p>
+                        {% endfor %}
                     </div>
-                    {% empty %}
-                    <p class="text-center">You have no past bookings.</p>
-                    {% endfor %}
-                </div>
-                <div class="tab-pane fade" id="cancelled" role="tabpanel">
-                    <!-- Cancelled bookings go here -->
-                    {% for booking in cancelled_bookings %}
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Date: {{ booking.booking_date }}, Time: {{ booking.booking_time }}
-                                <span class="badge badge-danger">Cancelled</span>
-                            </h5>
+                    <div class="tab-pane fade" id="cancelled" role="tabpanel">
+                        <!-- Cancelled bookings go here -->
+                        {% for booking in cancelled_bookings %}
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Date: {{ booking.booking_date }}, Time:
+                                    {{ booking.booking_time }}
+                                    <span class="badge badge-danger">Cancelled</span>
+                                </h5>
+                            </div>
                         </div>
+                        {% empty %}
+                        <p class="text-center">You have no cancelled bookings.</p>
+                        {% endfor %}
                     </div>
-                    {% empty %}
-                    <p class="text-center">You have no cancelled bookings.</p>
-                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Script to show the modal -->
-{% if messages %}
-<script>
-    $(document).ready(function () {
-        $('#messageModal').modal('show');
-    });
-</script>
-{% endif %}
-{% endblock %}
+
+    {% endblock %}

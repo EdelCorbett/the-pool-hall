@@ -51,18 +51,18 @@ class Table(models.Model):
     booked_end_time = models.DateTimeField(null=True, blank=True)
     booking_date = models.DateField(null=True, blank=True)
 
-    def is_table_available(self, booking_datetime, booking_size):
-        booking_start_time = datetime.combine(booking_datetime.date(), self.booking_time)
-        booking_end_time = booking_start_time + timedelta(hours=1)
+    # def is_table_available(self, booking_datetime, booking_size):
+    #     booking_start_time = datetime.combine(booking_datetime.date(), self.booking_time)
+    #     booking_end_time = booking_start_time + timedelta(hours=1)
 
-        if (
-            (self.booked_start_time is None or self.booked_start_time < booking_start_time)
-            and (self.booked_end_time is None or self.booked_end_time < booking_start_time)
-            and self.table_size == booking_size
-        ):
-            return True
+    #     if (
+    #         (self.booked_start_time is None or self.booked_start_time < booking_end_time)
+    #         and (self.booked_end_time is None or self.booked_end_time > booking_start_time)
+    #         and self.table_size == booking_size
+    #     ):
+    #         return True
 
-        return False
+    #     return False
 
     def __str__(self):
         return f"Table {self.table_number}"
@@ -86,7 +86,7 @@ class TimeSlots(models.Model):
         ('15:00:00', '15:00:00'),
         ('16:00:00', '16:00:00'),
         ('17:00:00', '17:00:00'),
-        ('18:00:00', '18:00:00'),
+        ('18:00:00', '18:00:00'),                  
         ('19:00:00', '19:00:00'),
         ('20:00:00', '20:00:00'),
         ('21:00:00', '21:00:00'),
@@ -130,6 +130,7 @@ class Bookings(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE,related_name='bookings')
     booking_time = models.TimeField()
     booking_date = models.DateField()
+    booking_end_time = models.TimeField(null=True)
     is_cancelled = models.BooleanField(default=False)
     is_edited = models.BooleanField(default=False)
     table = models.ForeignKey(Table, on_delete=models.SET_NULL, null=True,blank=True)

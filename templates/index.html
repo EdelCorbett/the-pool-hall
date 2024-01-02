@@ -3,38 +3,63 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<div class="approval-message">
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-            {% endfor %}
-    </ul>
-    {% endif %}
-</div>
-<div class="container py-5">
-    <h1 class="text-center mb-4">The Pool Hall</h1>
-
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card mb-3">
-                <div class="card-body text-center">
-                    <h4>Please Register to become a member, all ready a member please login </h4>
-                    <a href="{% url 'account_signup' %}" class="btn btn-primary mr-2">Register</a>
-                    <a href="{% url 'account_login' %}" class="btn btn-secondary mr-2">Login</a>
-                </div>
+<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                {% if messages %}
+                {% for message in messages %}
+                <p class="alert alert-{{ message.tags }}">{{ message }}</p>
+                {% endfor %}
+                {% endif %}
             </div>
-
-            <div class="card">
-                <div class="card-body">
-                    <h2>About</h2>
-                    <p>Welcome to The Pool Hall , the ultimate destination for pool enthusiasts! As a member, enjoy
-                        exclusive access to top-notch tables through easy online booking. Connect with like-minded
-                        players in a modern and friendly atmosphere. Elevate your game at The Pool Hall where every shot
-                        is a celebration!</p>
-                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Continue</button>
             </div>
         </div>
     </div>
 </div>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card mb-3">
+            <div class="card-body text-center">
+                <h1 class="mb-4">The Pool Hall</h1>
+            </div>
+        </div>
+        <!-- <div class="container py-5">
+    <h1 class="text-center mb-4">The Pool Hall</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6"> -->
+        {% if not user.is_authenticated %}
+        <div class="card mb-3">
+            <div class="card-body text-center">
+                <h4>Please Register to become a member, all ready a member please login </h4>
+                <a href="{% url 'account_signup' %}" class="btn btn-primary mr-2">Register</a>
+                <a href="{% url 'account_login' %}" class="btn btn-secondary mr-2">Login</a>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="card">
+            <div class="card-body">
+                <h2>About Us</h2>
+                <p>Welcome to The Pool Hall , the ultimate destination for pool enthusiasts! As a member, enjoy
+                    exclusive access to top-notch tables through easy online booking. Connect with like-minded
+                    players in a modern and friendly atmosphere. Elevate your game at The Pool Hall where every shot
+                    is a celebration!</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% if messages %}
+<script>
+    $(document).ready(function () {
+        $('#messageModal').modal('show');
+    });
+</script>
+{% endif %}
 {% endblock %}
