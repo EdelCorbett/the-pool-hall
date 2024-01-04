@@ -7,6 +7,61 @@ body {
 
 }
 
+body.blog-page {
+    background: rgba(52, 58, 64, 1) !important;
+
+}
+
+.col-md-6.masthead-text {
+    background-color: #ffffff;
+}
+
+.post-title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.post-content {
+
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.masthead-image img {
+    width: 50%;
+    height: auto;
+}
+
+.masthead-text {
+    position: absolute;
+    background-color: rgba(52, 58, 64, 0.7);
+    top: 50%;
+    right: 0%;
+    transform: translateY(-50%);
+    color: #fff;
+    height: 80%;
+    width: 40%;
+    font-size: 1em;
+}
+
+
+.section {
+    border: 2px solid #00695c;
+    border-radius: 30px;
+    padding: 20px;
+    margin-bottom: 20px;
+
+}
+
+.nav-item {
+    border-right: 1px solid #ffffff;
+}
+
+.nav-item:last-child {
+    border-right: none;
+}
+
 .navbar a:hover {
     color: #00695c !important;
 }

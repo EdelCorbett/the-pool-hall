@@ -20,6 +20,8 @@ from poolhall.views import handler404, handler500
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('booking.urls')),
+    path('blog/', include('blog.urls')),
+    path('summernote/', include('django_summernote.urls')),
     path('accounts/', include('allauth.urls')),
 ]
 

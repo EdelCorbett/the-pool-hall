@@ -20,7 +20,10 @@ class CustomUser(AbstractUser):
 
     def save(self, *args, **kwargs):
         #Check if membership_id is not provided
-        if not self.membership_id:
+        if self.membership_id:
+            self.is_membership_approved = False
+
+        else:
             unique_membership_id = False
             """
             Generate a unique membership_id using secrets module if membership_id is not provided
@@ -51,19 +54,7 @@ class Table(models.Model):
     booked_end_time = models.DateTimeField(null=True, blank=True)
     booking_date = models.DateField(null=True, blank=True)
 
-    # def is_table_available(self, booking_datetime, booking_size):
-    #     booking_start_time = datetime.combine(booking_datetime.date(), self.booking_time)
-    #     booking_end_time = booking_start_time + timedelta(hours=1)
-
-    #     if (
-    #         (self.booked_start_time is None or self.booked_start_time < booking_end_time)
-    #         and (self.booked_end_time is None or self.booked_end_time > booking_start_time)
-    #         and self.table_size == booking_size
-    #     ):
-    #         return True
-
-    #     return False
-
+   
     def __str__(self):
         return f"Table {self.table_number}"
 
