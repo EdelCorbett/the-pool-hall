@@ -146,9 +146,9 @@ class ViewBookingsView(LoginRequiredMixin,View):
     template_name = 'view_booking.html'
 
     def get(self, request):
-        cancelled_bookings = Bookings.objects.filter(user=request.user, is_cancelled=True).order_by('-booking_date')
+        cancelled_bookings = Bookings.objects.filter(user=request.user, is_cancelled=True).order_by('-booking_date')[:5]
         upcoming_bookings = Bookings.objects.filter(user=request.user, is_cancelled=False, booking_date__gte=timezone.now()).order_by('booking_date')
-        past_bookings = Bookings.objects.filter(user=request.user, is_cancelled=False, booking_date__lt=timezone.now()).order_by('-booking_date')
+        past_bookings = Bookings.objects.filter(user=request.user, is_cancelled=False, booking_date__lt=timezone.now()).order_by('-booking_date')[:5]
         return render(request, self.template_name, {'cancelled_bookings': cancelled_bookings, 'upcoming_bookings': upcoming_bookings, 'past_bookings': past_bookings})
         
 

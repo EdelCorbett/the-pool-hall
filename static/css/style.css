@@ -1,11 +1,24 @@
 body {
-    background: url('../images/pooltable.jpg') no-repeat center center fixed;
+    background: url('../images/tableimage.jpg') no-repeat center center fixed;
     background-size: cover;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 
 }
+
+a {
+    padding: 10px;
+}
+
+.head-title {
+    background-color: rgba(249, 246, 246, 0.7);
+    border-radius: 30px;
+    padding: 10px;
+    width: 70%;
+    margin-top: 40px;
+}
+
 
 body.blog-page {
     background: rgba(52, 58, 64, 1) !important;
@@ -14,10 +27,11 @@ body.blog-page {
 
 .col-md-6.masthead-text {
     background-color: #ffffff;
+    font-size: 1em;
 }
 
 .post-title {
-    font-size: 3rem;
+
     font-weight: bold;
     color: #ffffff;
 }
@@ -31,6 +45,7 @@ body.blog-page {
 .masthead-image img {
     width: 50%;
     height: auto;
+    padding-top: 10px;
 }
 
 .masthead-text {
@@ -42,15 +57,24 @@ body.blog-page {
     color: #fff;
     height: 80%;
     width: 40%;
-    font-size: 1em;
+
 }
 
 
 .section {
-    border: 2px solid #00695c;
+
     border-radius: 30px;
     padding: 20px;
     margin-bottom: 20px;
+
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    border-bottom: 1px solid rgba(249, 246, 246);
 
 }
 
@@ -63,35 +87,77 @@ body.blog-page {
 }
 
 .navbar a:hover {
-    color: #00695c !important;
+    color: rgb(220, 216, 216) !important;
+    box-shadow: 0 0 0 2px #fff;
+    /* Add a glowing effect on hover */
+    transform: translateY(-2px);
+    /* Move the button up slightly on hover */
 }
 
 .navbar-toggler {
-    border-color: #00695c !important;
+    border-color: rgba(249, 246, 246, 0.7) !important;
+}
+
+.navbar-toggler:focus {
+    outline: none;
 }
 
 
 .navbar-toggler:hover {
-    color: #00695c !important;
+    color: rgb(220, 216, 216) !important;
+}
+
+.navbar-collapse .collapse.show {
+    background-color: rgba(52, 58, 64, 0.7);
+
 }
 
 main {
     flex: 1 0 auto;
+    padding-top: 50px;
+    padding-bottom: 70px
 }
 
 h1 {
-    color: #ffffff;
 
+    color: rgb(43, 42, 42);
+    border-radius: 30px;
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: auto;
+}
+
+h2 {
+    color: rgb(43, 42, 42);
+    margin-bottom: 20px;
 
 }
 
+.head-booking {
+    color: rgba(249, 246, 246, 0.7);
+    margin-top: 50px;
+}
+
 .card {
-    background-color: rgba(52, 58, 64, 0.7);
+    background-color: rgb(220, 216, 216, 0.9);
     margin-top: 50px;
     margin-bottom: 50px;
+
     padding: 30px;
     border-radius: 30px;
-    color: white;
+    color: rgb(43, 42, 42);
+
+}
+
+.adout-card {
+    width: 80%
+}
+
+.booking-card {
+    margin-top: 5px;
+    padding: 0px;
 }
 
 .list-group-item {
@@ -103,9 +169,18 @@ h1 {
     color: black;
 }
 
+.post-link:hover {
+    color: rgba(52, 58, 64, 1);
+
+
+}
+
 
 .footer {
     flex-shrink: 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 
 }
 
@@ -123,18 +198,56 @@ h1 {
 
 }
 
+.book-btn {
+    background-color: rgba(52, 58, 64, 0.7);
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    transition: all 0.3s ease;
+
+}
+
+.btn.book-btn:hover {
+    box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff;
+    transform: translateY(-2px);
+
+}
+
+.alter-btn {
+    background-color: rgba(52, 58, 64, 0.7);
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    transition: all 0.3s ease;
+}
+
+.btn {
+    color: black;
+
+
+}
+
+.btn:hover {
+    color: rgba(249, 246, 246, 0.7);
+}
+
+.btn-like {
+    border: none;
+    background: none;
+    color: rgba(52, 58, 64)
+}
+
 .custom-container {
-    background-color: rgba(4, 83, 59, 0.9);
+    background-color: rgba(52, 58, 64, 0.7);
 }
 
 .custom-nav-tabs .nav-item .custom-nav-link {
-    background-color: #00897b;
-    color: #ffffff;
+    background-color: #434343;
+    color: rgba(249, 246, 246, 0.7);
+    border: 1px solid #ffffff;
+    border-radius: 0;
 }
 
 .custom-nav-tabs .nav-item .custom-nav-link.active {
-    background-color: #00695c;
-    color: #ffffff;
+    background-color: rgba(249, 246, 246, 0.7);
+    color: #434343;
+
 }
 
 .icon-white {
@@ -143,5 +256,5 @@ h1 {
 
 
 .icon-white:hover {
-    color: #00695c;
+    color: rgba(249, 246, 246, 0.7);
 }

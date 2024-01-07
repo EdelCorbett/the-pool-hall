@@ -22,38 +22,43 @@
 </div>
 <div class="row justify-content-center">
     <div class="col-md-6">
-        <div class="card mb-3">
-            <div class="card-body text-center">
-                <h1 class="mb-4">The Pool Hall</h1>
-            </div>
+        {% if user.is_authenticated %}
+        <div class="card-body  text-center">
+            <h1 class="mb-4 head-title">The Pool Hall</h1>
         </div>
-        <!-- <div class="container py-5">
-    <h1 class="text-center mb-4">The Pool Hall</h1>
-
-    <div class="row justify-content-center">
-        <div class="col-md-6"> -->
-        {% if not user.is_authenticated %}
-        <div class="card mb-3">
-            <div class="card-body text-center">
-                <h4>Please Register to become a member, all ready a member please login </h4>
-                <a href="{% url 'account_signup' %}" class="btn btn-primary mr-2">Register</a>
-                <a href="{% url 'account_login' %}" class="btn btn-secondary mr-2">Login</a>
-            </div>
+    </div>
+    {% endif %}
+    {% if not user.is_authenticated %}
+    <div class="card mb-3">
+        <div class="text-center">
+            <h2 class="mb-4">The Pool Hall</h2>
+            <h4>Please Register to become a member, all ready a member please login </h4>
+            <a href="{% url 'account_signup' %}" class="btn btn-primary mr-2">Register</a>
+            <a href="{% url 'account_login' %}" class="btn btn-secondary mr-2">Login</a>
         </div>
-        {% endif %}
+    </div>
+    {% endif %}
 
-        <div class="card">
-            <div class="card-body">
-                <h2>About Us</h2>
-                <p>Welcome to The Pool Hall , the ultimate destination for pool enthusiasts! As a member, enjoy
-                    exclusive access to top-notch tables through easy online booking. Connect with like-minded
-                    players in a modern and friendly atmosphere. Elevate your game at The Pool Hall where every shot
-                    is a celebration!</p>
-            </div>
+    <div class="card adout-card">
+        <div>
+            <h2>About Us</h2>
+            <p>Welcome to The Pool Hall, the ultimate destination for pool enthusiasts! As a member, you'll enjoy
+                exclusive access to our top-notch tables through our easy online booking system. Connect with
+                like-minded players in a modern and friendly atmosphere. Whether you're a seasoned pro or a beginner,
+                you'll find a welcoming community here.</p>
+
+            <p>At The Pool Hall, we believe that every shot is a celebration. We're more than just a pool hall - we're a
+                hub for the pool community. We host regular tournaments and events, offering you the chance to test your
+                skills and meet new people. Our staff are passionate about pool and always on hand to offer tips and
+                advice. Plus, we have a fully stocked bar and a menu of delicious food to keep you fueled during your
+                games.</p>
+
+            <p>So why wait? Elevate your game at The Pool Hall today!</p>
         </div>
     </div>
 </div>
-</div>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 {% if messages %}
 <script>

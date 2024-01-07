@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="container custom-container">
-    <h1 class="text-center">Your Bookings</h1>
+    <h1 class="text-center head-booking">Your Bookings</h1>
     {% if messages %}
     <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel"
         aria-hidden="true">
@@ -45,14 +45,13 @@
                         {% for booking in upcoming_bookings %}
 
                         <div class="card mb-3">
-                            <div class="card-body">
+                            <div class="card-body booking-card">
                                 <h5 class="card-title">Date: {{ booking.booking_date }}, Time:
                                     {{ booking.booking_time }}
                                 </h5>
 
-                                <a href="{% url 'edit_booking' booking.id %}"
-                                    class="btn btn-primary btn-sm mr-2">Edit</a>
-                                <a href="{% url 'cancel_booking' booking.id %}" class="btn btn-danger btn-sm">Cancel</a>
+                                <a href="{% url 'edit_booking' booking.id %}" class="btn alter-btn mr-2">Edit</a>
+                                <a href="{% url 'cancel_booking' booking.id %}" class="btn alter-btn">Cancel</a>
                             </div>
                         </div>
                         {% empty %}
