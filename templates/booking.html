@@ -27,7 +27,8 @@
                 <div class="form-group mt-3">
                     <label for="{{ form.booking_date.id_for_label }}">Booking Date</label>
                     <input type="date" class="form-control" id="{{ form.booking_date.id_for_label }}"
-                        name="{{ form.booking_date.name }}" value="{{ form.booking_date.value|date:'Y-m-d' }}" required>
+                        name="{{ form.booking_date.name }}" value="{{ form.booking_date.value|date:'Y-m-d' }}" required
+                        aria-required="true">
                 </div>
                 {{ form.booking_date.errors }}
 
@@ -73,13 +74,13 @@
                     {{ form.status }}
                 </div>
                 <div class="form-group">
-                    <label for="{{ form.table.id_for_label }}"></label>
+                    <label for="{{ form.table.id_for_label }}" style="display: none;">Table</label>
                     {{ form.table }}
                     {{ form.table.errors }}
                 </div>
 
                 <div class="text-center mt-3">
-                    <button type="submit" class="btn book-btn">Book Now</button>
+                    <button type="submit" class="btn book-btn" aria-label="Book your table now">Book Now</button>
                 </div>
             </form>
         </div>

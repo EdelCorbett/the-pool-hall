@@ -25,21 +25,11 @@ body.blog-page {
 
 }
 
-.col-md-6.masthead-text {
-    background-color: #ffffff;
-    font-size: 1em;
-}
 
-.post-title {
-
-    font-weight: bold;
-    color: #ffffff;
-}
-
-.post-content {
-
-    font-size: 18px;
-    line-height: 1.6;
+main {
+    flex: 1 0 auto;
+    padding-top: 50px;
+    padding-bottom: 70px
 }
 
 .masthead-image img {
@@ -59,6 +49,25 @@ body.blog-page {
     width: 40%;
 
 }
+
+
+.col-md-6.masthead-text {
+    background-color: #ffffff;
+    font-size: 1em;
+}
+
+.post-title {
+
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.post-content {
+
+    font-size: 18px;
+    line-height: 1.6;
+}
+
 
 
 .section {
@@ -89,9 +98,7 @@ body.blog-page {
 .navbar a:hover {
     color: rgb(220, 216, 216) !important;
     box-shadow: 0 0 0 2px #fff;
-    /* Add a glowing effect on hover */
     transform: translateY(-2px);
-    /* Move the button up slightly on hover */
 }
 
 .navbar-toggler {
@@ -112,11 +119,6 @@ body.blog-page {
 
 }
 
-main {
-    flex: 1 0 auto;
-    padding-top: 50px;
-    padding-bottom: 70px
-}
 
 h1 {
 
@@ -127,6 +129,7 @@ h1 {
     width: 50%;
     margin: 0 auto;
     margin-top: auto;
+    font-size: 2em;
 }
 
 h2 {
@@ -144,7 +147,7 @@ h2 {
     background-color: rgb(220, 216, 216, 0.9);
     margin-top: 50px;
     margin-bottom: 50px;
-
+    width: 80%;
     padding: 30px;
     border-radius: 30px;
     color: rgb(43, 42, 42);
@@ -257,4 +260,19 @@ h2 {
 
 .icon-white:hover {
     color: rgba(249, 246, 246, 0.7);
+}
+
+@media (max-width: 480px) {
+    .edit-h1 {
+        font-size: 1.5em;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding: 0px;
+    }
+}
+
+@media (max-width: 360px) {
+    .edit-h1 {
+        font-size: 1em;
+    }
 }

@@ -45,7 +45,7 @@ class BookingView(LoginRequiredMixin, FormView):
     the get method renders the booking form and passes it to the template
     the post method checks if membership is approved if not, it redirects to the index page with an error message
     if membership is approved it processes the form 
- """
+"""
     template_name = 'booking.html'
     form_class = BookingForm
 
