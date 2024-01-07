@@ -10,12 +10,13 @@ from .models import CustomUser, Table, Bookings, TimeSlots
 
 
 class MemberForm(UserCreationForm):
+    
     email = forms.EmailField(required=False)
     membership_id = forms.CharField(max_length=10, required=False)
 
     class Meta:
         model = CustomUser
-        fields = ("username","email", "password1", "password2", "membership_id")
+        fields = ("username","full_name","email", "password1", "password2", "membership_id")
 
     def clean(self):
         cleaned_data = super().clean()
@@ -52,7 +53,7 @@ class TimeSlotForm(forms.Form):
 class BookingForm(forms.ModelForm):
     class Meta:
         model = Bookings
-        fields = ['user', 'booking_date','booking_time',]
+        fields = ['user','booking_date','booking_time',]
         widgets = {
             'user': forms.TextInput(attrs={'readonly': 'readonly'}), 
             'booking_date': forms.DateInput(attrs={'type': 'date'}),
@@ -83,6 +84,6 @@ class BookingForm(forms.ModelForm):
         FormActions(
                 Submit('submit', 'Submit', css_class='btn btn-primary')
             )
-        # )
+        
 
     
