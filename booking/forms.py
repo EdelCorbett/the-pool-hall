@@ -12,7 +12,7 @@ from .models import CustomUser, Table, Bookings, TimeSlots
 class MemberForm(UserCreationForm):
     
     email = forms.EmailField(required=False)
-    membership_id = forms.CharField(max_length=10, required=False)
+    membership_id = forms.CharField(max_length=10, required=False, help_text="If you already have a membership id, please enter it here")
 
     class Meta:
         model = CustomUser
@@ -60,7 +60,6 @@ class BookingForm(forms.ModelForm):
             'booking_time': forms.TimeInput(attrs={'type': 'time','format': '%H:%M'}),
             'table': forms.Select(attrs={'class': 'form-control'}),
             
-        
         }
 
     def clean_booking_date(self):
@@ -70,6 +69,7 @@ class BookingForm(forms.ModelForm):
             raise ValidationError("The date cannot be in the past!")
 
         return booking_date
+    
     
     
 
