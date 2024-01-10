@@ -40,15 +40,30 @@ class MemberRegisterView(FormView):
     def form_invalid(self, form):
         print(form.errors)
         return super().form_invalid(form)
+    
+class BookingBaseView(LoginRequiredMixin, View):
+    def is_table_available(self, table, booking_date, booking_time):
+        booking_start_time = datetime.combine(booking_date, booking_time)
+        booking_end_time = booking_start_time + timedelta(hours=1)
+        overlapping_bookings = Bookings.objects.filter(
+            table=table,
+            is_cancelled=False,
+            booking_date=booking_date,
+            booking_time__lt=booking_end_time.time(),
+            booking_end_time__gt=booking_start_time.time()
+        )
+
+        return overlapping_bookings.count() == 0
 
 # Booking view
-class BookingView(LoginRequiredMixin, FormView):
-    """Booking view render the booking.html template with the booking form
+class BookingView(BookingBaseView ,FormView):
+    """
+    Booking view render the booking.html template with the booking form
     the get method renders the booking form and passes it to the template
     the post method checks if membership is approved if not,
     it redirects to the index page with an error message
     if membership is approved it processes the form 
-"""
+    """
     template_name = 'booking.html'
     form_class = BookingForm
 
@@ -61,20 +76,12 @@ class BookingView(LoginRequiredMixin, FormView):
             messages.error(request, 
                         'Your membership is not approved yet.'
                         'Bookings can only be made by approved members.')
-            return redirect('index') 
+            return redirect('index')
 
-        """
-        creates a copy of the POST data and adds the user id to it
-        creates a new form instance with the new data
-        """
         form_data = request.POST.copy()  
         form_data['user'] = request.user.id  
         form = self.form_class(form_data)
-        """
-        checks if the form is valid
-        if the form is valid, it gets the booking date and time from the form
 
-        """
         if form.is_valid():
             booking_date = form.cleaned_data['booking_date']
             booking_time = form.cleaned_data['booking_time']
@@ -85,14 +92,6 @@ class BookingView(LoginRequiredMixin, FormView):
 
             table_available = False
 
-            """
-            loops through all the tables in the database and
-            checks if the table is available
-            if the table is available, it creates
-            a new booking and saves it to the database
-            it also updates the table to mark it as 
-            not available during the booked time
-            """
             for table in Table.objects.filter():
                 if self.is_table_available(table, booking_date, booking_time):
                     booking = form.save(commit=False)
@@ -104,8 +103,10 @@ class BookingView(LoginRequiredMixin, FormView):
                         booking_date, booking_time)
                     booking_datetime_aware = timezone.make_aware(
                         booking_datetime)
-
-                    booking.booking_end_time = booking_datetime_aware + timedelta(hours=1)  
+                    
+                    booking.booking_end_time = (
+                        booking_datetime_aware + timedelta(hours=1)
+                    )       
                     booking.save() 
 
                     table.booked_start_time = booking_datetime_aware
@@ -116,11 +117,7 @@ class BookingView(LoginRequiredMixin, FormView):
 
                     table_available = True
                     break
-            """
-            if a table is available, it redirects to the view_booking page
-            with a success message
-            if no table is available, it returns an error message
-            """
+
             if table_available:
                 messages.success(
                     request, 
@@ -128,34 +125,13 @@ class BookingView(LoginRequiredMixin, FormView):
                     f"at {booking_time_str}")
                 return redirect('view_booking')
             
-            else:
-                form = self.form_class(initial=request.POST)
-                context = {
-                    'form': form, 
-            'error_message': "No tables available for selected date and time."
-            }
-                return render(request, self.template_name, context)
-        
-        
-    def is_table_available(self, table, booking_date, booking_time):
-        booking_start_time = datetime.combine(booking_date, booking_time)
-        booking_end_time = booking_start_time + timedelta(hours=1)
-        """
-        The filter method checks for bookings that start before 
-        booking_end_time and are not cancelled
-        The lt(less than) lookup excludes bookings 
-        that start after booking_end_time
-        The gt(greater than) lookup excludes bookings
-        that end before booking_start_time"""
-        overlapping_bookings = Bookings.objects.filter(
-            table=table,
-            is_cancelled=False,
-            booking_date=booking_date,
-            booking_time__lt=booking_end_time.time(),
-            booking_end_time__gt=booking_start_time.time()
-        )
+            else: 
+                form = self.form_class(initial=request.POST) 
+                return render(request, self.template_name, {'form': form, 'error_message': "No tables available for the selected date and time."})
+        else:
+            return render(request, self.template_name, {'form': form})
 
-        return overlapping_bookings.count() == 0
+
     
 
 class ViewBookingsView(LoginRequiredMixin,View):
@@ -182,10 +158,11 @@ class ViewBookingsView(LoginRequiredMixin,View):
         
 
 # Edit booking view
-class EditBookingView(LoginRequiredMixin,View):
+class EditBookingView(BookingBaseView):
     """
     View for editing a booking
-    gets the booking from the database with booking_id and passes it to the edit_booking.html template
+    gets the booking from the database with booking_id and
+    passes it to the edit_booking.html template
     if no booking is found, it returns a 404 error
     create a form instance with the booking data 
     updates the booking with the new data
@@ -196,26 +173,40 @@ class EditBookingView(LoginRequiredMixin,View):
     def get(self, request, booking_id):
         booking = get_object_or_404(Bookings, pk=booking_id)
         form = BookingForm(instance=booking)
-        return render(request, self.template_name, {'form': form, 'booking': booking})
+        return render(request, self.template_name, {
+            'form': form, 'booking': booking})
 
     def post(self, request, booking_id):
         booking = get_object_or_404(Bookings, pk=booking_id)
         form = BookingForm(request.POST, instance=booking)
-        
+
         if form.is_valid():
-            form.save()
+            booking_date = form.cleaned_data['booking_date']
+            booking_time = form.cleaned_data['booking_time']
+
+            # Check if the booking date is in the future
+            if booking_date < datetime.now().date():
+                form.add_error('booking_date', 'Booking date must be in the future.')
+                return render(request, self.template_name, {'form': form, 'booking': booking})
             
-        messages.success(request, 'You have successfully edited your booking.')
-        return redirect('view_booking') 
-        
-        
-        return render(request, self.template_name, {'form': form, 'booking': booking})
-    
+
+            # Check if the table is available
+            table = booking.table
+            if not self.is_table_available(table, booking_date, booking_time):
+                form.add_error(None, 'Table is not available at the selected time.')
+                return render(request, self.template_name, {'form': form, 'booking': booking})
+
+            form.save()
+            messages.success(request, 'You have successfully edited your booking.')
+            return redirect('view_booking') 
+        else:
+            return render(request, self.template_name, {'form': form, 'booking': booking})
 # Cancel booking view
 class CancelBookingView(LoginRequiredMixin,View):
     """
     View for canceling a booking
-    gets the booking from the database with booking_id and passes it to the cancel_booking.html template
+    gets the booking from the database with booking_id and
+    passes it to the cancel_booking.html template
     if no booking is found, it returns a 404 error
     updates the booking to mark it as cancelled
     updates the table to mark it as available
@@ -227,8 +218,9 @@ class CancelBookingView(LoginRequiredMixin,View):
     def get(self, request, booking_id):
         booking = get_object_or_404(Bookings, pk=booking_id)
         form = BookingForm(instance=booking)
-        warning_message = "Please note that canceling a booking is irreversible."
-        return render(request, self.template_name, {'form': form, 'warning_message': warning_message})
+        warning_message = 'Please note that canceling a booking is irreversible'
+        return render(request, self.template_name, {
+            'form': form,'warning_message': warning_message})
 
     def post(self, request, booking_id):
         booking = get_object_or_404(Bookings, id=booking_id)
