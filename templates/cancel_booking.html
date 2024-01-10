@@ -23,12 +23,12 @@
                 <div class="form-group mt-3">
                     <label for="{{ form.booking_date.id_for_label }}">Booking Date</label>
                     <input type="date" class="form-control" id="{{ form.booking_date.id_for_label }}"
-                        name="{{ form.booking_date.name }}" value="{{ form.booking_date.value|date:'Y-m-d' }}" required>
+                        name="{{ form.booking_date.name }}" value="{{ form.booking_date.value|date:'Y-m-d' }}" required readonly>
                 </div>
                 {{ form.booking_date.errors }}
                 <div class="form-group">
                     <label><strong>Booking Time:</strong></label>
-                    <input type="text" class="form-control" value="{{ form.booking_time.value|time:'H:i' }}" required>
+                    <input type="text" class="form-control" value="{{ form.booking_time.value|time:'H:i' }}" required readonly>
                 </div>
                 <div class="alert alert-info" role="alert">
                     Are you sure you want to cancel this booking?

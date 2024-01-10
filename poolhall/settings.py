@@ -176,5 +176,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 ACCOUNT_FORMS = {'signup': 'booking.forms.MemberForm'}
 
-handler404 = 'poolhall.views.handler404'
-handler500 = 'poolhall.views.handler500'
+

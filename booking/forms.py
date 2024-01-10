@@ -48,14 +48,13 @@ class MemberForm(UserCreationForm):
 class TimeSlotForm(forms.Form):
     timeslots = forms.ChoiceField(choices=[(f'{hour:02}:{minute:02}', f'{hour:02}:{minute:02}') for hour in range(15, 22) for minute in range(0, 60, 15)])
 
-    
-    
+
 class BookingForm(forms.ModelForm):
     class Meta:
         model = Bookings
         fields = ['user','booking_date','booking_time',]
         widgets = {
-            'user': forms.TextInput(attrs={'readonly': 'readonly'}), 
+            'user': forms.TextInput(attrs={'readonly': 'readonly'}),
             'booking_date': forms.DateInput(attrs={'type': 'date'}),
             'booking_time': forms.TimeInput(attrs={'type': 'time','format': '%H:%M'}),
             'table': forms.Select(attrs={'class': 'form-control'}),
@@ -63,27 +62,32 @@ class BookingForm(forms.ModelForm):
         }
 
     def clean_booking_date(self):
-        booking_date = self.cleaned_data.get('booking_date')
+            booking_date = self.cleaned_data.get('booking_date')
 
-        if booking_date < date.today():
-            raise ValidationError("The date cannot be in the past!")
 
-        return booking_date
-    
-    
-    
+            if booking_date < date.today():
+                raise ValidationError("The date and time cannot be in the past!"
+                                    "Please select a valid date and time.")
+            return booking_date
 
-    
+    def clean_booking_time(self):
+            booking_time = self.cleaned_data.get('booking_time')
+            booking_date = self.cleaned_data.get('booking_date')
+
+
+            # If the booking date is today and the booking time is in the past
+            if booking_date == date.today() and datetime.now().time() > booking_time:
+                raise ValidationError("The time cannot be in the past! Please select a valid time.")
+
+
+            return booking_time
+            
     def __init__(self, *args, **kwargs):
-        user = kwargs.pop('user', None)
-        super(BookingForm, self).__init__(*args, **kwargs)
-        self.fields['user'].initial = user
-
+            user = kwargs.pop('user', None)
+            super(BookingForm, self).__init__(*args, **kwargs)
+            self.fields['user'].initial = user
+            
+            FormActions(
+                    Submit('submit', 'Submit', css_class='btn btn-primary')
+                )
         
-
-        FormActions(
-                Submit('submit', 'Submit', css_class='btn btn-primary')
-            )
-        
-
-    

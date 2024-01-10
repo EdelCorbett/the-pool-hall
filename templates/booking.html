@@ -4,10 +4,10 @@
 
 {% block content %}
 
-<div class="d-flex justify-content-center align-items-center vh-100">
-    <div class="card shadow">
+<div class="d-flex justify-content-center align-items-center vh-100 width">
+    <div class="card shadow ">
         <div class="card-body">
-            <h1 class="text-center">Booking</h1>
+            <h1 class="text-center">Book Now</h1>
             {% if error_message %}
             <div class="alert alert-danger" role="alert">
                 {{ error_message }}
@@ -30,7 +30,7 @@
                         name="{{ form.booking_date.name }}" value="{{ form.booking_date.value|date:'Y-m-d' }}" required
                         aria-required="true">
                 </div>
-                {{ form.booking_date.errors }}
+                {{ form.booking_date.errors}}
 
 
                 <div class="form-group">

@@ -20,11 +20,14 @@
         </div>
     </div>
 </div>
-<div class="row justify-content-center">
-    <div class="col-md-6">
+    <div class="row justify-content-center">
+    <div>
         {% if user.is_authenticated %}
-        <div class="card-body  text-center">
-            <h1 class="mb-4 head-title">The Pool Hall</h1>
+        <div class="card-body   text-center head-title">
+            <h1 class="mb-4 ">
+                The Pool Hall
+            </h1>
+            <a href="{% url 'booking' %}" class="btn book-btn" aria-label="Book your table now">Book Now</a>
         </div>
     </div>
     {% endif %}
@@ -39,8 +42,8 @@
     </div>
     {% endif %}
 
-    <div class="card adout-card">
-        <div>
+    <div class="row justify-content-center">
+        <div class="card adout-card">
             <h2>About Us</h2>
             <p>Welcome to The Pool Hall, the ultimate destination for pool enthusiasts! As a member, you'll enjoy
                 exclusive access to our top-notch tables through our easy online booking system. Connect with
