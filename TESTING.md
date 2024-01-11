@@ -12,7 +12,6 @@
 ### Footer 
 | Feature               | Action     | Expected Result                                                    | Pass/Fail |
 |-----------------------|------------|--------------------------------------------------------------------|-----------|
-
 |  Instagram icon     | Click      |  opens Instagram                                                  |    Pass   |
 |  Facebook icon     | Click      |  opens Facebook                                                 |    Pass   |
 |  TicToc icon     | Click      |  opens Tictoc                                                  |    Pass   |

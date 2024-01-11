@@ -13,7 +13,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR,'templates')
 
 SECRET_KEY = os.environ["SECRET_KEY"]
 
-DEBUG = False
+DEBUG = True
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
@@ -32,8 +32,9 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'cloudinary_storage',
+    
     'django.contrib.staticfiles',
+    'cloudinary_storage',
     'cloudinary',
     'crispy_forms',
     'django_summernote',
@@ -128,7 +129,6 @@ USE_TZ = True
 
 
 
-MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
