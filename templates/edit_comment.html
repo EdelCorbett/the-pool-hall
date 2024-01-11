@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block body_class %}blog-page{% endblock %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<div class="col-md-5 section card mb-4 mt-3 mx-auto">
+    <h1>Edit comment:</h1>
+    <div class="card-body">
+        <div class="comments"
+            style="padding: 10px; background-color: #f8f9fa; border: 1px solid #dee2e6; margin-bottom: 10px;">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn book-btn">Save changes</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
