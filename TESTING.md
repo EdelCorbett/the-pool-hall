@@ -16,7 +16,24 @@
 |  Instagram icon     | Click      |  opens Instagram                                                  |    Pass   |
 |  Facebook icon     | Click      |  opens Facebook                                                 |    Pass   |
 |  TicToc icon     | Click      |  opens Tictoc                                                  |    Pass   |
-
+### Sign up Page
+| Feature               | Action     | Expected Result                                                    | Pass/Fail |
+|-----------------------|------------|--------------------------------------------------------------------|-----------|
+|   Register button   | Click      |  Open Sign up form                                                |    Pass   |
+|  User name  field   | Empty    |  Form won't submit error Displayed                                               |    Pass   |
+|  User name  field   | Worng format entered    |  Form won't submit error Displayed                                               |    Pass   |
+|  User name  field   | Duplicate Name   |  Form won't submit error Displayed                                               |    Pass   |
+| Email  field (optional)  | Empty    |  Form submitted                                             |    Pass   |
+| Email  field (optional)  | Worng format entered     |  Form won't submit error Displayed                                              |    Pass   |
+| Email  field (optional)  |  Duplicate Email |  Form won't submit error Displayed                  |    Pass   |
+| Email  field (optional)  | With correct format  |  Form submitted                                             |    Pass   |
+| Password  field  | With incorrect format  |  Form won't submit error Displayed                                             |    Pass   |
+| Password Confirmation field  | With incorrect Match  |  Form won't submit error Displayed                                             |    Pass   |
+| Password  field  | With correct format  |  Form submitted                                             |    Pass   |
+| Membership id field (optional) | Empty |  Submit form                                            |    Pass   |
+| Membership id field (optional) | With correct format  |  Submit form                                            |    Pass   |
+|  Sign Up button   | Click      |  Submit form and displays success login message                                              |    Pass   |
+|  Contuine button on success message   | Click      |  redirects to home page message                                             |    Pass   |
 
 ### Home Page
 | Feature               | Action     | Expected Result                                                    | Pass/Fail |
@@ -66,12 +83,24 @@
 |  Blog post Link      | Click      |  Opens Post_detail Page     |    Pass   |
 
 ### Post_detail Page
+#### If user is login
+-----
 | Feature               | Action     | Expected Result                                                    | Pass/Fail |
 |-----------------------|------------|--------------------------------------------------------------------|-----------|
 |  Like button      | Click      |  likes post and show how many likes are on post     |    Pass   |
 |  Comment Icon      | show how many comment      |  Changes when new comment is approved    |    Pass   |
 |  Leave a comment box      | write comment to post      |  prepopulate with poster name      |    Pass   |
 |  Submit button      | Click      |  Submit post for Approval and displays waiting approval message    |    Pass   |
+|  Comment waiting approval Edit Button     | Click      |   Display edit commet form   |    Pass   |
+|  Save changes button      | Click      |  Submit Edit comment for approval and redirects to post page    |    Pass   |
+|  Delete  button      | Click      |  Displays Delete comment modal    |    Pass   |
+|  Delete  button on modal      | Click      |  Deletes comment displays home page  |    Pass   |
+|  Cancel button on modal      | Click      |   Cancels modal displays post page |    Pass   |
+#### If user is not login
+-----
+| Feature               | Action     | Expected Result                                                    | Pass/Fail |
+|-----------------------|------------|--------------------------------------------------------------------|-----------|
+|  Displays post      | none     |  Display post and approved comment.     |    Pass   |
 
 
 

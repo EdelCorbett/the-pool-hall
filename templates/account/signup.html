@@ -15,6 +15,9 @@
                         <div class="form-group">
                             <label for="{{ field.id_for_label }}">{{ field.label }}</label>
                             {{ field }}
+                            {% if field.name == "email" %}
+                            <small class="helptext">This field is optional</small>
+                            {% endif %}
                             {% if field.help_text %}
                             <small class="helptext">{{ field.help_text }}</small>
                             {% endif %}

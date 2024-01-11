@@ -3,7 +3,7 @@ from django.views import generic, View
 from django.contrib import messages
 from django.http import HttpResponseRedirect, HttpResponseForbidden
 from blog.models import Post
-from .models import Post, Comment 
+from .models import Post, Comment
 from .forms import CommentForm
 from django.db.models import Q
 
@@ -21,7 +21,10 @@ class PostDetail(View):
     def get(self, request, slug, *args, **kwargs):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
-        comments = post.comments.filter(Q(approved=True) | Q(approved=False, name=request.user.username)).order_by("-created_on")
+        comments = post.comments.filter(
+            Q(approved=True) | Q(approved=False,
+                                 name=request.user.username
+                                 )).order_by("-created_on")
         liked = False
         if post.likes.filter(id=self.request.user.id).exists():
             liked = True
@@ -34,15 +37,16 @@ class PostDetail(View):
                 "comments": comments,
                 "commented": False,
                 "liked": liked,
-                "total_likes": total_likes, 
+                "total_likes": total_likes,
                 "comment_form": CommentForm()
             },
         )
-    
+
     def post(self, request, slug, *args, **kwargs):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
-        comments = post.comments.filter(Q(approved=True) | Q(name=request.user)).order_by("-created_on")
+        comments = post.comments.filter(
+            Q(approved=True) | Q(name=request.user)).order_by("-created_on")
         liked = False
         if post.likes.filter(id=self.request.user.id).exists():
             liked = True
@@ -56,7 +60,10 @@ class PostDetail(View):
             comments = list(comments) + [new_comment]
         else:
             comment_form = CommentForm()
-            comments = post.comments.filter(Q(approved=True) | Q(approved=False, name=request.user.username)).order_by("-created_on")
+            comments = post.comments.filter(Q(
+                approved=True) | Q(approved=False,
+                                   name=request.user.username)).order_by(
+                                       "-created_on")
 
         return render(
             request,
@@ -72,7 +79,7 @@ class PostDetail(View):
 
 
 class PostLike(View):
-    
+
     def post(self, request, slug, *args, **kwargs):
         post = get_object_or_404(Post, slug=slug)
         if post.likes.filter(id=request.user.id).exists():
@@ -80,14 +87,16 @@ class PostLike(View):
         else:
             post.likes.add(request.user)
 
-        return HttpResponseRedirect(reverse('post_detail', args=[slug,]))
-    
+        return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+
+
 class CommentEdit(View):
     def get(self, request, slug, comment_id, *args, **kwargs):
         post = get_object_or_404(Post, slug=slug)
         comment = get_object_or_404(post.comments, id=comment_id)
         if comment.approved:
-            return HttpResponseForbidden("You cannot edit an approved comment.")
+            return HttpResponseForbidden(
+                "You cannot edit an approved comment.")
         form = CommentForm(instance=comment)
         return render(request, 'edit_comment.html', {'form': form})
 
@@ -95,13 +104,13 @@ class CommentEdit(View):
         post = get_object_or_404(Post, slug=slug)
         comment = get_object_or_404(post.comments, id=comment_id)
         if comment.approved:
-            return HttpResponseForbidden("You cannot edit an approved comment.")
+            return HttpResponseForbidden(
+                "You cannot edit an approved comment.")
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('post_detail', args=[slug, ]))
         return render(request, 'edit_comment.html', {'form': form})
-
 
 
 class CommentDelete(View):
