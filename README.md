@@ -79,18 +79,18 @@ If Register button is clicked signup form is displayed, Django Allauth signup fo
 ---
 <details><summary>
 Sign in form</summary>
-<img src="/documentation/signinform.png">
+<img src="documentation/Signinform.png">
 </details>
 If user clicks login then sign in form is displayed,Django Allauth login form is used for authentication.When signed in successfully signed in message displays 
 <details><summary>
 Sign in success</summary>
-<img src="/documentation/signin-success.png">
+<img src="documentation/signin-success.png">
 </details>
 
 ---
 <details><summary>
 Sign out form</summary>
-<img src="/documentation/signout.png">
+<img src="documentation/signout.png">
 </details>
 
 ---
@@ -98,35 +98,35 @@ When user click logout sign out message and button is displayed if use clicks si
 
 <details><summary>
 Sign out success</summary>
-<img src="/documentation/signout-success.png">
+<img src="documentation/signout-success.png">
 </details>
 
 ---
 <details><summary>
 Book Now Form Page</summary>
-<img src="/documentation/bookingform.png">
+<img src="documentation/bookingform.png">
 </details>
 When user click Book Now booking for displays,the booking form is pre filled with login username which can not be changed as only approved members can make bookings.
 <details><summary>
 Booking Date picker </summary>
-<img src="/documentation/booking-date.png">
+<img src="documentation/booking-date.png">
 </details>
 For Booking date a date picker will display to input date.
 <details><summary>
 Booking Time </summary>
-<img src="/documentation/booking-time-option.png">
+<img src="documentation/booking-time-option.png">
 </details>
 For Booking Time a list for time option will display.
 
 ---
 <details><summary>
 Successfull Booking </summary>
-<img src="/documentation/booking-successful.png">
+<img src="documentation/booking-successful.png">
 </details>
 If Booking is successful success message will display with time and date of message and redirect to your bookings page.
 <details><summary>
 Invalid Date or Time </summary>
-<img src="/documentation/invaild-dateandtime.png">
+<img src="documentation/invaild-dateandtime.png">
 </details>
 If invalid Date or time is chosen a errror message is displayed.
 <details><summary>
@@ -138,38 +138,38 @@ If there are no tables available for user selected date and time an alert messag
 ---
 <details><summary>
 Your Bookings page Upcoming</summary>
-<img src="/documentation/upcoming.png">
+<img src="documentation/upcoming.png">
 </details>
 Your Bookings is a page where users can view all thier bookings Upcoming tab displays all upcoming bookings with an Edit button so users can edit thier booking and a cancel button so users can cancel thier booking.
 <details><summary>
 Edit Button</summary>
-<img src="../the-pool-hall/documentation/edit-form.png">
+<img src="documentation/edit-form.png">
 </details>
 When edit button is clicked the Edit booking form is displayed.Edit booking form has the same date picker and time option as the booking form, it also give the same error messages for invalid date and time It also give the same alert as booking form if no tables are available of selected time and date.
 <details><summary>
 Edit Successful</summary>
-<img src="/documentation/edited-success.png">
+<img src="documentation/edited-success.png">
 </details>
 If Edit booking is successful a success message is displayed.
 <details><summary>
 Cancel Button</summary>
-<img src="/documentation/cancel-booking-form.png">
+<img src="documentation/cancel-booking-form.png">
 </details>
 If cancel button is clicked it displays the cancel booking form here the user is ask are they sure they want to cancel the booking.If Cancel booking button is clicked booking is cancelled and a successfully cancelled message is displayed.
 <details><summary>
 Successfully Cancelled</summary>
-<img src="/documentation/booking-cancelled.png">
+<img src="documentation/booking-cancelled.png">
 </details>
 
 ---
 <details><summary>
 Your Bookings Past Tab </summary>
-<img src="/documentation/past.png">
+<img src="documentation/past.png">
 </details>
 The past tab displays all past booking.
 <details><summary>
 Your Bookings Cancelled Tab </summary>
-<img src="/documentation/cancelled.png">
+<img src="documentation/cancelled.png">
 </details>
 The cancelled tab displays all cancelled bookings.
 
