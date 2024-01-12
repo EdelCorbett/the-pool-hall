@@ -1,5 +1,5 @@
 body {
-    background: url('../images/tableimage.jpg') no-repeat center center fixed;
+    background: url('https://res.cloudinary.com/denpkbpy1/image/upload/v1705056689/Leonardo_Diffusion_XL_In_this_pool_hall_the_game_is_more_than_1_h4ivzx.jpg') no-repeat center center fixed;
     background-size: cover;
     display: flex;
     flex-direction: column;
