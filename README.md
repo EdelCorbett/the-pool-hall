@@ -291,3 +291,31 @@ os.environ["ClOUDINARY_URL"] your database url.
 8. Access your new database by clicking on its name, which will take you to the dashboard.
 
 9. In the dashboard, you'll find the URL for your database. You'll need this URL to connect your Django project to the database.
+
+## Technologies And Languages
+
+### Languages Used
+
+- [HTML](https://html.com/)
+- CSS
+- [JavaScript](https://www.javascript.com/)
+- [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/)
+- [Python](https://www.python.org/)
+- [Django](https://www.djangoproject.com/)
+# Technologies Used
+ - [Am I responsive](https://ui.dev/amiresponsive)
+
+ - [GitHub](https://github.com/) 
+
+# Testing 
+All Testing in
+[TESTING.md](./TESTING.md)
+
+## Credits 
+* [Code Institute](https://codeinstitute.net/) I think Therefore i blog walk through project for the blog page.
+
+
+## Acknowledgements
+I would like to acknowledge 
+* [Code Institute](https://codeinstitute.net/)
+* Juliia Konn My Mentor for her advice and support during the project. 

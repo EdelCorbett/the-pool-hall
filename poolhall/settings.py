@@ -6,7 +6,7 @@ if os.path.isfile('env.py'):
     import env
 
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR,'templates')
 
@@ -17,7 +17,8 @@ DEBUG = True
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
-ALLOWED_HOSTS = ['pp4poolhall-b3360ca06d73.herokuapp.com', 'localhost','127.0.0.1']
+ALLOWED_HOSTS = ['pp4poolhall-b3360ca06d73.herokuapp.com',
+                'localhost','127.0.0.1']
 
 
 # Application definition
@@ -60,7 +61,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    # 'whitenoise.middleware.WhiteNoiseMiddleware', # whitenoise for static files
+    'whitenoise.middleware.WhiteNoiseMiddleware', # whitenoise for static files
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
