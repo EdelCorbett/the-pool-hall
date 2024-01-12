@@ -12,8 +12,8 @@ The goal of this site is to build a booking system so staff of the pool hall can
 
 ![ERD](documentation/erd.png)
 
- # LIVE LINK  [the Pool Hall](https://pp4poolhall-b3360ca06d73.herokuapp.com/)
-
+  ### LIVE LINK  [The Pool Hall](https://pp4poolhall-b3360ca06d73.herokuapp.com/)
+ ### Link to [github repository](https://github.com/EdelCorbett/the-pool-hall)
 # User Experience UX
 ----
 Vistors to this site would be of the most part member of The Pool Hall Club They would be register on this app so they can make a booking for a table at the club and find information on Club events and news.
@@ -28,7 +28,7 @@ Create the basic structure for a Django project
 - [As a Developer I can create a database so that store project](https://github.com/EdelCorbett/the-pool-hall/issues/11)
 - [As a Developer I can Deploy project early so that I can continually test the application during development.](https://github.com/EdelCorbett/the-pool-hall/issues/12)
 
-### [Epic 2](https://github.com/EdelCorbett/the-pool-hall/milestone/1)
+### [Epic 2](https://github.com/EdelCorbett/the-pool-hall/milestone/1) User registertion
 This epic focuses on establishing a secure and user-friendly system for members to join and access the website's features and providing a secure and efficient authentication system for existing members.
 ### User Stories
 
@@ -43,11 +43,103 @@ In this epic a booking form will be created and the user ability to cancel a boo
 ### User Stories
 
 - [As a users I can choose time so that make a reservation.](https://github.com/EdelCorbett/the-pool-hall/issues/3)
+- [As a User I can edit my booking so that change the date or time.](https://github.com/EdelCorbett/the-pool-hall/issues/15)
+- [As a user I can access booking so that cancel my booking.](https://github.com/EdelCorbett/the-pool-hall/issues/4)
+
+### [Epic 4](https://github.com/EdelCorbett/the-pool-hall/issues/5) Design
+In this epic the design of the project is to make navigation  of site and design for user experience 
+- [As a User I can navigate to site easily so that find what I'm looking for.](https://github.com/EdelCorbett/the-pool-hall/issues/5)
+- [As a User I can clearly determine what each form is for so that correctly fill them out.](https://github.com/EdelCorbett/the-pool-hall/issues/18)
+- [As a developer I can create a favicon so that so user can locate page tab easy](https://github.com/EdelCorbett/the-pool-hall/issues/17)
+- [As a Developer I can design a clear footer with social link and business informationso thatThe user can use link and find business info easy](https://github.com/EdelCorbett/the-pool-hall/issues/19)
+### [Epic 5](https://github.com/EdelCorbett/the-pool-hall/milestone/5)
+In this epic a blog page is create so admin can create post on events and club news and where users can comment and like the posts.
+- [As a user I can view up coming events so that I know whats coming up and i can comment and like the posts](https://github.com/EdelCorbett/the-pool-hall/issues/6)
+
+# Features  
+
+----
+
+<details><summary>Home Page  logged out User</summary>
+<img src="../the-pool-hall/documentation/homepage-reg.png">
+</details>
+If user is not logged-in Home page displays register button and login button so users can register or login.
+
+----
+<details><summary>
+Sign Up form</summary>
+<img src="../the-pool-hall/documentation/signupform.png">
+</details>
+If Register button is clicked signup form is displayed, Django Allauth signup form is used for authentication.
+
+---
+<details><summary>
+Sign in form</summary>
+<img src="../the-pool-hall/documentation/signinform.png">
+</details>
+If user clicks login then sign in form is displayed,Django Allauth login form is used for authentication.When signed in successfully signed in message displays 
+<details><summary>
+Sign in success</summary>
+<img src="../the-pool-hall/documentation/signin-success.png">
+</details>
+
+---
+<details><summary>
+Sign out form</summary>
+<img src="../the-pool-hall/documentation/signout.png">
+</details>
+
+---
+When user click logout sign out message and button is displayed if use clicks sign out then user is sign out and signed out message displays.
+
+<details><summary>
+Sign out success</summary>
+<img src="../the-pool-hall/documentation/signout-success.png">
+</details>
+
+---
+<details><summary>
+Book Now Form Page</summary>
+<img src="../the-pool-hall/documentation/bookingform.png">
+</details>
+When user click Book Now booking for displays,the booking form is pre filled with login username which can not be changed as only approved members can make bookings.
+<details><summary>
+Booking Date picker </summary>
+<img src="../the-pool-hall/documentation/booking-date.png">
+</details>
+For Booking date a date picker will display to input date.
+<details><summary>
+Booking Time </summary>
+<img src="../the-pool-hall/documentation/booking-time-option.png">
+</details>
+For Booking Time a list for time option will display.
+
+---
+<details><summary>
+Successfull Booking </summary>
+<img src="../the-pool-hall/documentation/booking-successful.png">
+</details>
+If Booking is successful success message will display with time and date of message and redirect to your bookings page.
+<details><summary>
+Invalid Date or Time </summary>
+<img src="../the-pool-hall/documentation/invaild-dateandtime.png">
+</details>
+If invalid Date or time is chosen a errror message is displayed.
+<details><summary>
+No Tables Available </summary>
+<img src="../the-pool-hall/documentation/no-tables-available.png">
+</details>
+If there are no tables available for user selected date and time an alert message is displayed.
 
 
 
 
-
+## Color Palette
+This color palette was chosen as it compelmented the Background image 
+![color palette](documentation/poolhallcolor.png)
+---
+### Background image was generated using  [Leonardo.ai](https://leonardo.ai/)
+![Background Image](/static/images/tableimage.jpg) 
 
 # Deployment
 This Project was deployed through [HEROKU](https://www.heroku.com/) using these steps:
