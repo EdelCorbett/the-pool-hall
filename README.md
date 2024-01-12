@@ -72,7 +72,7 @@ When User is logged in the home page display Book Now button is is because only 
 ----
 <details><summary>
 Sign Up form</summary>
-<img src="../the-pool-hall/documentation/signupform.png">
+<img src="documentation/signupform.png">
 </details>
 If Register button is clicked signup form is displayed, Django Allauth signup form is used for authentication.
 
