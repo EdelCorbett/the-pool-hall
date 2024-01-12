@@ -64,6 +64,10 @@ In this epic a blog page is create so admin can create post on events and club n
 <img src="../the-pool-hall/documentation/homepage-reg.png">
 </details>
 If user is not logged-in Home page displays register button and login button so users can register or login.
+<details><summary>Home Page  logged in User</summary>
+<img src="../the-pool-hall/documentation/home-logged-in.png">
+</details>
+When User is logged in the home page display Book Now button is is because only login registered members can make a booking. 
 
 ----
 <details><summary>
@@ -131,8 +135,53 @@ No Tables Available </summary>
 </details>
 If there are no tables available for user selected date and time an alert message is displayed.
 
+---
+<details><summary>
+Your Bookings page Upcoming</summary>
+<img src="../the-pool-hall/documentation/upcoming.png">
+</details>
+Your Bookings is a page where users can view all thier bookings Upcoming tab displays all upcoming bookings with an Edit button so users can edit thier booking and a cancel button so users can cancel thier booking.
+<details><summary>
+Edit Button</summary>
+<img src="../the-pool-hall/documentation/edit-form.png">
+</details>
+When edit button is clicked the Edit booking form is displayed.Edit booking form has the same date picker and time option as the booking form, it also give the same error messages for invalid date and time It also give the same alert as booking form if no tables are available of selected time and date.
+<details><summary>
+Edit Successful</summary>
+<img src="../the-pool-hall/documentation/edited-success.png">
+</details>
+If Edit booking is successful a success message is displayed.
+<details><summary>
+Cancel Button</summary>
+<img src="../the-pool-hall/documentation/cancel-booking-form.png">
+</details>
+If cancel button is clicked it displays the cancel booking form here the user is ask are they sure they want to cancel the booking.If Cancel booking button is clicked booking is cancelled and a successfully cancelled message is displayed.
+<details><summary>
+Successfully Cancelled</summary>
+<img src="../the-pool-hall/documentation/booking-cancelled.png">
+</details>
 
+---
+<details><summary>
+Your Bookings Past Tab </summary>
+<img src="../the-pool-hall/documentation/past.png">
+</details>
+The past tab displays all past booking.
+<details><summary>
+Your Bookings Cancelled Tab </summary>
+<img src="../the-pool-hall/documentation/cancelled.png">
+</details>
+The cancelled tab displays all cancelled bookings.
 
+---
+### Navigation bar
+![navbar logged Out](documentation/nav-loggedout.png)
+![navbar logged In](documentation/nav-login.png)
+On large screens navbar has tabs for each page.
+![navbar on mobile](documentation/nav-mobile.png)
+
+On Mobile the navbar use bootstrap to collapse down to a hamburger icon when clicked a drop down menu with link is displayed
+![navbar dropdown on mobile](documentation/nav-drop-down.png)
 
 ## Color Palette
 This color palette was chosen as it compelmented the Background image 
