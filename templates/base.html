@@ -6,13 +6,20 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Welcome to My Pool Hall App where you can view or events and book a table.">
+    <meta name="keywords" content="Pool, Pool Hall, Pool Hall Cork Ireland, Pool Hall Booking App Cork Ireland, Pool Events,  Pool hall blog">
+    <meta name="author" content="Edel Corbett">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
     <!-- Bootstrap link-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>My Pool Hall - {% block title %}{% endblock %}</title>
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/denpkbpy1/image/upload/v1705068655/favicon_io%20%285%29/favicon-32x32_wavsup.png">
+    <!-- CSS link -->
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
 
 
@@ -73,7 +80,6 @@
         {% block content %}{% endblock %}
     </main>
     <!-- Footer -->
-
     <footer class="footer bg-dark text-white">
         <div class=" py-1 ml-1 mr-1">
             <div class="row">
@@ -117,6 +123,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous">
     </script>
+    <!-- Script to close the alert after 2.5 seconds -->
     <script>
         setTimeout(function () {
             let messages = document.getElementById('msg');

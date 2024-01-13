@@ -11,6 +11,7 @@
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
+                <h2 id="messageModalLabel" class="visually-hidden">Message Modal</h2>
                 <div class="modal-body text-center">
                     {% for message in messages %}
                     <p{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</p>
@@ -27,14 +28,14 @@
     <div class="row">
         <div class="col-md-12">
             <ul class="nav nav-tabs custom-nav-tabs" role="tablist">
-                <li class="nav-item">
+                <li class="nav-item" role="presentation">
                     <a class="nav-link active custom-nav-link" id="upcoming-tab" data-toggle="tab" href="#upcoming"
                         role="tab">Upcoming</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" role="presentation">
                     <a class="nav-link custom-nav-link" id="past-tab" data-toggle="tab" href="#past" role="tab">Past</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" role="presentation">
                     <a class="nav-link custom-nav-link" id="cancelled-tab" data-toggle="tab" href="#cancelled"
                         role="tab">Cancelled</a>
                 </li>

@@ -20,7 +20,7 @@
         </div>
     </div>
 </div>
-    <div class="row justify-content-center">
+<div class="row justify-content-center">
     <div>
         {% if user.is_authenticated %}
         <div class="card-body   text-center head-title">
@@ -29,8 +29,8 @@
             </h1>
             <a href="{% url 'booking' %}" class="btn book-btn" aria-label="Book your table now">Book Now</a>
         </div>
-    </div>
     {% endif %}
+    </div>
     {% if not user.is_authenticated %}
     <div class=" card mb-3 mx-auto text-center" style="max-width: 600px">
         <div class="text-center">
@@ -41,6 +41,7 @@
         </div>
     </div>
     {% endif %}
+</div>
 
     <div class="row justify-content-center">
         <div class="card adout-card">
