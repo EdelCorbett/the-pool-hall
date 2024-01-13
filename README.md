@@ -1,5 +1,7 @@
 # The Pool Hall
 The Pool Hall is an app for member-only Pool Club.The app is a convenient way for members to reserve Pool tables for certin times. Members can log in check table availability, and book their time slot.The app also has an events page where the club can keep members up to date on the Club events and news.
+---
+![Mockups](documentation/Mockup.png)
 
 # Strategy
 
@@ -303,8 +305,10 @@ os.environ["ClOUDINARY_URL"] your database url.
 - [Python](https://www.python.org/)
 - [Django](https://www.djangoproject.com/)
 # Technologies Used
- - [Am I responsive](https://ui.dev/amiresponsive)
-
+ - [Techsini.com](https://techsini.com/multi-mockup/index.php)
+ - [VS Code](https://code.visualstudio.com/)
+ - [Balsamiq](https://balsamiq.com/)
+ - [Favicon](https://favicon.io/)
  - [GitHub](https://github.com/) 
 
 # Testing 

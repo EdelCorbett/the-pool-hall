@@ -1,4 +1,8 @@
 ## Manual Testing
+Browsers and Devices
+* I have tested the site  on Chrome, Safari and Firefox
+* I have tested the site on different screen sizes to confirm it is responsive mobile, Ipad and Desktop 
+* I have tested all links to confirm they are functioning.
 ### Navigation Bar
 | Feature               | Action     | Expected Result                                                    | Pass/Fail |
 |-----------------------|------------|--------------------------------------------------------------------|-----------|
@@ -103,4 +107,6 @@
 
 
 
-
+---
+## Validator Testing
+### [W3C](https://validator.w3.org/) was used for validation of Html
