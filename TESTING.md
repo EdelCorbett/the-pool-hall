@@ -109,7 +109,11 @@ Browsers and Devices
 
 ---
 ## Validator Testing
-### [W3C](https://validator.w3.org/) was used for validation of Html
+### [W3C](https://validator.w3.org/) was used for validation of Html And CSS
+---
+
+## CSS
+![css](documentation/Test-screenshot-pp4/css.png)
 
 
 ### [CI Pythoon linter](https://pep8ci.herokuapp.com/) was use to test python code.

@@ -1,4 +1,8 @@
 # The Pool Hall
+
+ ### LIVE LINK  [The Pool Hall](https://pp4poolhall-b3360ca06d73.herokuapp.com/)
+ ### Link to [github repository](https://github.com/EdelCorbett/the-pool-hall)
+ ---
 The Pool Hall is an app for member-only Pool Club.The app is a convenient way for members to reserve Pool tables for certin times. Members can log in check table availability, and book their time slot.The app also has an events page where the club can keep members up to date on the Club events and news.
 ---
 ![Mockups](documentation/Mockup.png)
@@ -6,16 +10,102 @@ The Pool Hall is an app for member-only Pool Club.The app is a convenient way fo
 # Strategy
 
 This site is developed for a members only pool hall so that members can register their membership so they a book a table and see what time are available.
+
+---
 ## Goals
 The goal of this site is to build a booking system so staff of the pool hall can manage booking a members can make bookings online.
 
+---
+# Agile Methodology
+Github projects was use to follow agile principles. Using this help me organise my user stories with acceptance criteria and tasks in to EPICS(milestones), once 1 had created the user stories I then group them in to 5 different Epics 
 
-[Desktop Wireframes](documentation/poolhall%20wire%20%20frames/)
 
-[ERD](documentation/erd.png)
+### [Project Board](https://github.com/users/EdelCorbett/projects/5?pane=issue&itemId=45068334)
 
-  ### LIVE LINK  [The Pool Hall](https://pp4poolhall-b3360ca06d73.herokuapp.com/)
- ### Link to [github repository](https://github.com/EdelCorbett/the-pool-hall)
+----
+![](documentation/projectboard.png)
+
+### Wireframes
+---
+| PAGE                  |   Wireframes    |
+|-----------------------------|------------|
+|  Home          | <details><summary>image</summary><img src="./documentation/poolhall-wire-frames/desktop-wireframes/desktop-home.png"></details> | 
+|  Booking          | <details><summary>image</summary><img src="./documentation/poolhall-wire-frames/desktop-wireframes/desktop-booking.png"></details> | 
+|  Sign up /register          | <details><summary>image</summary><img src="./documentation/poolhall-wire-frames/desktop-wireframes/desktop-signup.png"></details> | 
+| login         | <details><summary>image</summary><img src="./documentation/poolhall-wire-frames/desktop-wireframes/desktop-login.png"></details> | 
+|  Events          | <details><summary>image</summary><img src="./documentation/poolhall-wire-frames/desktop-wireframes/desktop-whats-on.png"></details> | 
+
+[Entity-Relationship Diagram](documentation/erd.png)
+## DATA MODELS
+CustomUser Model
+| Name          | Field Type    |
+| ------------- | ------------- | 
+|    full_name  | CharFeild     | 
+|    email  |  EmailField    |
+|    membership_id  |  CharFeild  |
+|   is_membership_approved  |   BooleanField  |
+|   membership_start_date  |   DateField  |
+|   membership_end_date  |   DateField  |
+---
+Booking Model
+| Name          | Field Type    |
+| ------------- | ------------- | 
+|   User  | ForeignKey   | 
+|    booking_time| TimeField    |
+|    booking_date | DateField  |
+|   booking_end_time |  TimeField     |
+|    is_cancelled  |  BooleanField     |
+|  is_edited  |    BooleanField |
+|  Table | ForeignKey    |
+
+---
+TimeSlots Model
+| Name          | Field Type    |
+| ------------- | ------------- | 
+|   day  |  CharFeild  | 
+|   start_time| TimeField    |
+|   is_open | BooleanField|
+|   Table |    ForeignKey    | 
+---
+
+
+Table Model
+| Name          | Field Type    |
+| ------------- | ------------- | 
+|  table_number  |  IntegerField | 
+|   table_size|  CharFeild   |
+|   booking_time| TimeField |
+|  booked_start_time |  DateTimeField   |
+|  booked_end_time |  DateTimeField   | 
+|  booking_date |  DateField   |  
+
+---
+
+Post Model
+| Name          | Field Type    |
+| ------------- | ------------- | 
+|   title  | CharFeild   | 
+|   slug|   SlugField  |
+|    author | ForeignKey |
+|   content|  TextField     |
+|   status  |  IntegerField |
+|  created_on  |  DateTimeField    |
+|  updated_on|   DateTimeField |
+| featured_image  |   CloudinaryField |
+|   likes|   ManyToManyField |
+
+---
+ Comment Model
+| Name          | Field Type    |
+| ------------- | ------------- | 
+|    post | ForeignKey    |
+|    name  |  CharFeild  | 
+|    email  |  EmailField    |
+|   body |   TextField  |
+|  created_on  |  DateTimeField    |
+|   approved  | BooleanField   |
+
+---
 # User Experience UX
 ----
 Vistors to this site would be of the most part member of The Pool Hall Club They would be register on this app so they can make a booking for a table at the club and find information on Club events and news.
@@ -40,7 +130,7 @@ This epic focuses on establishing a secure and user-friendly system for members 
 - [As a Admin I can view memberships so that I can manage them](https://github.com/EdelCorbett/the-pool-hall/issues/9)
 - [As an admin I can login so that I can view and manage bookings](https://github.com/EdelCorbett/the-pool-hall/issues/7)
 
-### [Epic 3](https://github.com/EdelCorbett/the-pool-hall/milestone/2)
+### [Epic 3](https://github.com/EdelCorbett/the-pool-hall/milestone/2) Booking and Cancellation
 In this epic a booking form will be created and the user ability to cancel a booking.
 ### User Stories
 
@@ -49,16 +139,19 @@ In this epic a booking form will be created and the user ability to cancel a boo
 - [As a user I can access booking so that cancel my booking.](https://github.com/EdelCorbett/the-pool-hall/issues/4)
 
 ### [Epic 4](https://github.com/EdelCorbett/the-pool-hall/issues/5) Design
-In this epic the design of the project is to make navigation  of site and design for user experience 
+In this epic the design of the project is to make navigation  of site and design for user experience
+### User Stories
 - [As a User I can navigate to site easily so that find what I'm looking for.](https://github.com/EdelCorbett/the-pool-hall/issues/5)
 - [As a User I can clearly determine what each form is for so that correctly fill them out.](https://github.com/EdelCorbett/the-pool-hall/issues/18)
 - [As a developer I can create a favicon so that so user can locate page tab easy](https://github.com/EdelCorbett/the-pool-hall/issues/17)
 - [As a Developer I can design a clear footer with social link and business informationso thatThe user can use link and find business info easy](https://github.com/EdelCorbett/the-pool-hall/issues/19)
-### [Epic 5](https://github.com/EdelCorbett/the-pool-hall/milestone/5)
+### [Epic 5](https://github.com/EdelCorbett/the-pool-hall/milestone/5) Admin and Blog page
 In this epic a blog page is create so admin can create post on events and club news and where users can comment and like the posts.
+### User Stories
 - [As a user I can view up coming events so that I know whats coming up and i can comment and like the posts](https://github.com/EdelCorbett/the-pool-hall/issues/6)
 
 # Features  
+<details><summary>Click to display screenshot of Pages</summary><img ></details>
 
 ----
 
@@ -274,6 +367,10 @@ os.environ["ClOUDINARY_URL"] your database url.
     
        python manage.py createsuperuser
 
+8. Then you be promted to enter a user name and password once this is done
+
+        python manage.py runserver
+
 ### Setting Up a Database with ElephantSQL
 
 1. Go to [ElephantSQL website](https://www.elephantsql.com/) and register for a new account.
@@ -294,9 +391,9 @@ os.environ["ClOUDINARY_URL"] your database url.
 
 9. In the dashboard, you'll find the URL for your database. You'll need this URL to connect your Django project to the database.
 
-## Technologies And Languages
+# Technologies And Languages
 
-### Languages Used
+### Languages and Frameworks 
 
 - [HTML](https://html.com/)
 - CSS
@@ -304,22 +401,30 @@ os.environ["ClOUDINARY_URL"] your database url.
 - [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/)
 - [Python](https://www.python.org/)
 - [Django](https://www.djangoproject.com/)
+---
 # Technologies Used
  - [Techsini.com](https://techsini.com/multi-mockup/index.php)
+ - [ElephantSQL website](https://www.elephantsql.com/)
+ - [Cloudinary](https://cloudinary.com/)
  - [VS Code](https://code.visualstudio.com/)
  - [Balsamiq](https://balsamiq.com/)
  - [Favicon](https://favicon.io/)
  - [GitHub](https://github.com/) 
-
+---
 # Testing 
 All Testing in
 [TESTING.md](./TESTING.md)
-
+---
 ## Credits 
 * [Code Institute](https://codeinstitute.net/) I think Therefore i blog walk through project for the blog page.
-
+* [Very Academy](https://www.youtube.com/@veryacademy) tutorials for understanding of django
+* [Codemycom](https://www.youtube.com/@Codemycom) tutorials for understanding of django
+* [Pixbay](https://pixabay.com/)  Place holder Image
+* [Font awesome](https://fontawesome.com/): social icons
+* [Coolors](https://coolors.co/) generate color palette
 
 ## Acknowledgements
 I would like to acknowledge 
 * [Code Institute](https://codeinstitute.net/)
-* Juliia Konn My Mentor for her advice and support during the project. 
+* Juliia Konn My Mentor for her advice and support during the project.
+* My Family members who help me test the app 
