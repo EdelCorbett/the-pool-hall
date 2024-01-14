@@ -14,4 +14,3 @@ urlpatterns = [
     path('cancel_booking/<int:booking_id>/', views.CancelBookingView.as_view(),
          name='cancel_booking'),
          ]
-

@@ -114,3 +114,64 @@ Browsers and Devices
 
 ### [CI Pythoon linter](https://pep8ci.herokuapp.com/) was use to test python code.
 
+| Poolhall project file                   |    Result    | 
+|-----------------------------|------------|
+| <details><summary>Settings.py</summary><img src="./documentation/Test-screenshot-pp4/setting.png"></details>             | These errors are django set up code.   |
+| <details><summary>urls.py</summary><img src="./documentation/Test-screenshot-pp4/urls.png"></details>             | No errors   |
+|<details><summary>views.py</summary><img src="./documentation/Test-screenshot-pp4/views.png"></details>             | No errors   |
+|<details><summary>wsgi.py</summary><img src="./documentation/Test-screenshot-pp4/views.png"></details>             | No errors   |
+|<details><summary>asgi.py</summary><img src="./documentation/Test-screenshot-pp4/Asgi.png"></details>             | No errors   |
+
+
+---
+| Booking App file                   |    Result    | 
+|-----------------------------|------------|
+|<details><summary>admin.py</summary><img src="./documentation/Test-screenshot-pp4/booking-admin.png"></details>             | No errors   |
+|<details><summary>apps.py</summary><img src="./documentation/Test-screenshot-pp4/booking-apps.png"></details>             | No errors   |
+|<details><summary>forms.py</summary><img src="./documentation/Test-screenshot-pp4/booking-form.png"></details>             | No errors   |
+|<details><summary>models.py</summary><img src="./documentation/Test-screenshot-pp4/booking-models.png"></details>             | No errors   |
+|<details><summary>urls.py</summary><img src="./documentation/Test-screenshot-pp4/booking-urls.png"></details>             | No errors   |
+|<details><summary>views.py</summary><img src="./documentation/Test-screenshot-pp4/booking-views.png"></details>             | No errors   |
+
+----
+| Blog App file                   |    Result    | 
+|-----------------------------|------------|
+|<details><summary>admin.py</summary><img src="./documentation/Test-screenshot-pp4/blog-admin.png"></details>             | No errors   |
+|<details><summary>apps.py</summary><img src="./documentation/Test-screenshot-pp4/blog-apps.png"></details>             | No errors   |
+|<details><summary>forms.py</summary><img src="./documentation/Test-screenshot-pp4/blog-form.png"></details>             | No errors   |
+|<details><summary>models.py</summary><img src="./documentation/Test-screenshot-pp4/blog-models.png"></details>             | No errors   |
+|<details><summary>urls.py</summary><img src="./documentation/Test-screenshot-pp4/blog-urls.png"></details>             | No errors   |
+|<details><summary>views.py</summary><img src="./documentation/Test-screenshot-pp4/blog-views.png"></details>             | No errors   |
+
+
+---
+### Lighthouse
+<details><summary>Click to display screenshot results for lighthouse testing</summary><img ></details>
+
+----
+| PAGE                  |    Result    |
+|-----------------------------|------------|
+|  Home          | <details><summary>mobile</summary><img src="./documentation/Test-screenshot-pp4/home-mobile.png"></details> | 
+|  Home          | <details><summary>desktop</summary><img src="./documentation/Test-screenshot-pp4/home-desk.png"></details> |
+|  Booking         | <details><summary>mobile</summary><img src="./documentation/Test-screenshot-pp4/book-mobile.png"></details> | 
+|  Booking         | <details><summary>desktop</summary><img src="./documentation/Test-screenshot-pp4/book-desk.png"></details> |
+|  Sign up  | <details><summary>mobile</summary><img src="./documentation/Test-screenshot-pp4/signup-mobile.png"></details> |  
+|  Sign up         | <details><summary>desktop</summary><img src="./documentation/Test-screenshot-pp4/signup-desk.png"></details> |
+|  Sign In | <details><summary>mobile</summary><img src="./documentation/Test-screenshot-pp4/signin-mobile.png"></details> |
+|  Sign In         | <details><summary>desktop</summary><img src="./documentation/Test-screenshot-pp4/signin-desk.png"></details> | 
+|  Bookings | <details><summary>mobile</summary><img src="./documentation/Test-screenshot-pp4/yourbook-mobile.png"></details> |
+|  Bookings | <details><summary>desktop</summary><img src="./documentation/Test-screenshot-pp4/yourbook-deskobile.png"></details> |
+|  Events | <details><summary>mobile</summary><img src="./documentation/Test-screenshot-pp4/event-m.png"></details> |
+|  Events | <details><summary>desktop</summary><img src="./documentation/Test-screenshot-pp4/event-desk.png"></details> |
+|  Post page | <details><summary>mobile</summary><img src="./documentation/Test-screenshot-pp4/blog-mobile.png"></details> |
+| Post page | <details><summary>desktop</summary><img src="./documentation/Test-screenshot-pp4/blog-desk.png"></details> | 
+|  Edit comment page| <details><summary>mobile</summary><img src="./documentation/Test-screenshot-pp4/edit-mobile.png"></details> |    
+
+
+
+### BUGS
+- [Deploying to Heroku](https://github.com/EdelCorbett/the-pool-hall/issues/13)
+
+- [Failed deployment](https://github.com/EdelCorbett/the-pool-hall/issues/20)
+
+- [Duplicate comment](https://github.com/EdelCorbett/the-pool-hall/issues/21)
