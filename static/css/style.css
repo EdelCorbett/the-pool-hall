@@ -241,6 +241,10 @@ h2 {
     color: rgba(249, 246, 246, 0.7);
 }
 
+icon-space {
+    margin: 10px;
+}
+
 /* Media Queries */
 @media (max-width: 480px) {
     .edit {

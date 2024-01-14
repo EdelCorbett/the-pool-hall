@@ -12,7 +12,7 @@ The goal of this site is to build a booking system so staff of the pool hall can
 
 [Desktop Wireframes](documentation/poolhall%20wire%20%20frames/)
 
-![ERD](documentation/erd.png)
+[ERD](documentation/erd.png)
 
   ### LIVE LINK  [The Pool Hall](https://pp4poolhall-b3360ca06d73.herokuapp.com/)
  ### Link to [github repository](https://github.com/EdelCorbett/the-pool-hall)
@@ -271,8 +271,8 @@ os.environ["ClOUDINARY_URL"] your database url.
 7. Create the superuser.
 
     In terminal
-
-        python manage.py createsuperuser
+    
+       python manage.py createsuperuser
 
 ### Setting Up a Database with ElephantSQL
 

@@ -23,8 +23,8 @@ class PostDetail(View):
         post = get_object_or_404(queryset, slug=slug)
         comments = post.comments.filter(
             Q(approved=True) | Q(approved=False,
-                                 name=request.user.username
-                                 )).order_by("-created_on")
+                                name=request.user.username
+                                )).order_by("-created_on")
         liked = False
         if post.likes.filter(id=self.request.user.id).exists():
             liked = True
@@ -57,13 +57,12 @@ class PostDetail(View):
             new_comment = comment_form.save(commit=False)
             new_comment.post = post
             new_comment.save()
-            comments = list(comments) + [new_comment]
         else:
             comment_form = CommentForm()
             comments = post.comments.filter(Q(
                 approved=True) | Q(approved=False,
-                                   name=request.user.username)).order_by(
-                                       "-created_on")
+                                name=request.user.username)).order_by(
+                                    "-created_on")
 
         return render(
             request,
