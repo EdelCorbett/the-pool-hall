@@ -22,8 +22,15 @@ Github projects was use to follow agile principles. Using this help me organise 
 
 ### [Project Board](https://github.com/users/EdelCorbett/projects/5?pane=issue&itemId=45068334)
 
+The Project board was divided in to 4 columns todo,In progress, done and bugs 
+
 ----
 ![](documentation/projectboard.png)
+
+---
+
+MoSCoW Prioritization
+In this project MoSCoW was use to prioritize the most important features
 
 ### Wireframes
 ---
@@ -146,7 +153,7 @@ In this epic the design of the project is to make navigation  of site and design
 - [As a developer I can create a favicon so that so user can locate page tab easy](https://github.com/EdelCorbett/the-pool-hall/issues/17)
 - [As a Developer I can design a clear footer with social link and business informationso thatThe user can use link and find business info easy](https://github.com/EdelCorbett/the-pool-hall/issues/19)
 ### [Epic 5](https://github.com/EdelCorbett/the-pool-hall/milestone/5) Admin and Blog page
-In this epic a blog page is create so admin can create post on events and club news and where users can comment and like the posts.
+In this epic a blog page is create so admin can create post on events and club news and where users can comment and like the posts. This Feature was added later in the projectas it a good feature so the user can be kept up to date on club events.
 ### User Stories
 - [As a user I can view up coming events so that I know whats coming up and i can comment and like the posts](https://github.com/EdelCorbett/the-pool-hall/issues/6)
 
@@ -169,7 +176,7 @@ When User is logged in the home page display Book Now button is is because only 
 Sign Up form</summary>
 <img src="documentation/signupform.png">
 </details>
-If Register button is clicked signup form is displayed, Django Allauth signup form is used for authentication.
+If Register button is clicked signup form is displayed, Django Allauth signup form is used for authentication.If user is already a member they can enter their membership Id if they don't enter a membership number one is generated when they register.
 
 ---
 <details><summary>
@@ -269,6 +276,26 @@ Your Bookings Cancelled Tab </summary>
 The cancelled tab displays all cancelled bookings.
 
 ---
+<details><summary>
+Events Page </summary>
+<img src="documentation/event.png">
+</details>
+This is the blog page that displays the post, posted by Admin
+<details><summary>
+Post Page </summary>
+<img src="documentation/post.png">
+</details>
+On this page users can view the post they can also like and comment on the post
+
+<details><summary>
+leave comment </summary>
+<img src="documentation/comment.png">
+</details>
+Here the user can leave a comment while their comment is waiting approval from Admin they have the option to edit or delete the comment once commet is approved it can not be edit or deleted.There is a message on each comment letting the user know if a comment is approved or if its still waiting approval.
+
+
+---
+
 ### Navigation bar
 ![navbar logged Out](documentation/nav-loggedout.png)
 ![navbar logged In](documentation/nav-login.png)
@@ -393,7 +420,7 @@ os.environ["ClOUDINARY_URL"] your database url.
 
 # Technologies And Languages
 
-### Languages and Frameworks 
+## Languages 
 
 - [HTML](https://html.com/)
 - CSS
@@ -402,10 +429,23 @@ os.environ["ClOUDINARY_URL"] your database url.
 - [Python](https://www.python.org/)
 - [Django](https://www.djangoproject.com/)
 ---
-# Technologies Used
+## Imported Modules
+- [Django-allauth](https://pypi.org/project/django-allauth/) authentication library used to create the user accounts.
+
+- [Gunicorn](https://pypi.org/project/gunicorn/)  web server used to run the website
+
+- [Cloudinary](https://pypi.org/project/cloudinary/1.27.0/)
+
+- [Django-crispy-forms](https://django-crispy-forms.readthedocs.io/en/latest/)
+
+- [Dj-database-url](https://pypi.org/project/dj-database-url/)
+
+- [Psycopg2](https://www.psycopg.org/)
+
+---
+## Technologies Used
  - [Techsini.com](https://techsini.com/multi-mockup/index.php)
- - [ElephantSQL website](https://www.elephantsql.com/)
- - [Cloudinary](https://cloudinary.com/)
+ - [ElephantSQL website](https://www.elephantsql.com/) 
  - [VS Code](https://code.visualstudio.com/)
  - [Balsamiq](https://balsamiq.com/)
  - [Favicon](https://favicon.io/)
@@ -423,8 +463,9 @@ All Testing in
 * [Font awesome](https://fontawesome.com/): social icons
 * [Coolors](https://coolors.co/) generate color palette
 
-## Acknowledgements
+## Acknowledgements 
 I would like to acknowledge 
 * [Code Institute](https://codeinstitute.net/)
 * Juliia Konn My Mentor for her advice and support during the project.
 * My Family members who help me test the app 
+* This project was built for educational purposes by Edel Corbett  

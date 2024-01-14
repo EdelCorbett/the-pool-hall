@@ -111,6 +111,8 @@ Browsers and Devices
 ## Validator Testing
 ### [W3C](https://validator.w3.org/) was used for validation of Html And CSS
 ---
+## Html
+![html](documentation/Test-screenshot-pp4/html.png)
 
 ## CSS
 ![css](documentation/Test-screenshot-pp4/css.png)
