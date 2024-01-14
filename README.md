@@ -157,6 +157,35 @@ In this epic a blog page is create so admin can create post on events and club n
 ### User Stories
 - [As a user I can view up coming events so that I know whats coming up and i can comment and like the posts](https://github.com/EdelCorbett/the-pool-hall/issues/6)
 
+---
+# CRUD
+## Create  
+- The user can create an account
+- The user can create a booking 
+- The user can create a comment 
+- Admin can create members
+- Admin can create blog post 
+- Admin can create bookings  
+## Read 
+- The user can read their bookings 
+- The user can read the blog page 
+- The user can read thier comments
+- Admin can read comment  
+
+## Update 
+- The user update thier booking 
+- The user can update their comment 
+- Admin can update post 
+
+## Delete
+- The user can cancel thier booking 
+- The user can delete their comment
+- Admin can delete post 
+- Admin can delete comments 
+- Admin can delete members 
+
+
+
 # Features  
 <details><summary>Click to display screenshot of Pages</summary><img ></details>
 
@@ -311,6 +340,13 @@ This color palette was chosen as it compelmented the Background image
 ---
 ### Background image was generated using  [Leonardo.ai](https://leonardo.ai/)
 ![Background Image](/static/images/tableimage.jpg) 
+
+# Admin Panel
+Im the Admin panel the Staff can
+- Approve and delete Memberships 
+- Approve and delete comments
+- Create ,veiw and detele bookings
+- Create and delete Posts
 
 # Deployment
 This Project was deployed through [HEROKU](https://www.heroku.com/) using these steps:
